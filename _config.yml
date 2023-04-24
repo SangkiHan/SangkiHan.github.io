@@ -14,12 +14,12 @@ baseurl: ""
 lang: en
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: Asia/Seoul
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: 한상기 블로그 # the main title
+title: Sangki Han # the main title
 
 tagline:  항상 고민하고 배우려는 개발자 | BackEnd Programmer # it will display as the sub-title
 
