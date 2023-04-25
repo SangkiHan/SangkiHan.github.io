@@ -13,14 +13,14 @@ if ('serviceWorker' in navigator) {
 
             /* in case the user ignores the notification */
             if (registration.waiting) {
-                $notification.toast('hide');
+                $notification.toast('show');
             }
 
             registration.addEventListener('updatefound', () => {
                 registration.installing.addEventListener('statechange', () => {
                     if (registration.waiting) {
                         if (navigator.serviceWorker.controller) {
-                            $notification.toast('hide');
+                            $notification.toast('show');
                         }
                     }
                 });
