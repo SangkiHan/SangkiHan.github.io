@@ -62,8 +62,7 @@
 
     {% for entry in site.data.contact %}
       {% case entry.type %}
-      <!-- , 'twitter'  -->
-        {% when 'github'%}
+        {% when 'github', 'twitter', 'instagram'%}
           {%- capture url -%}
             https://{{ entry.type }}.com/{{ site[entry.type].username }}
           {%- endcapture -%}

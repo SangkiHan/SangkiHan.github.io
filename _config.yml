@@ -31,6 +31,8 @@ url: 'https://sangkihan.github.io/'
 
 github:
   username: SangkiHan # change to your github username
+instagram:
+  username: hansang_ki
 
 #twitter:
 #  username: twitter_username # change to your twitter username
@@ -44,6 +46,7 @@ social:
     # The first element serves as the copyright owner's link
 #    - https://twitter.com/username # change to your twitter homepage
     - https://github.com/SangkiHan # change to your github homepage
+    - https://www.instagram.com/hansang_ki
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
