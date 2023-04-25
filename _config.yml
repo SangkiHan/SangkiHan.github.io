@@ -119,6 +119,7 @@ assets:
 
 pwa:
   enabled: true # the option for PWA feature
+  notification: false
 
 paginate: 10
 
