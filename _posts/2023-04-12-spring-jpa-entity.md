@@ -1,7 +1,7 @@
 ---
 title: '@Entity'
 author: SangkiHan
-date: 2023-04-26 13:20:00 +0900
+date: 2023-04-12 13:20:00 +0900
 categories: [Spring, JPA]
 tags: [JPA]
 ---
@@ -31,4 +31,4 @@ public class Member {
 ```
 
 ### Member Table
-![Member table](/assets/img/post/2023-04-26-spring-jpa-entity/memberDB.PNG)
+![Member table](/assets/img/post/2023-04-12-spring-jpa-entity/memberDB.PNG)

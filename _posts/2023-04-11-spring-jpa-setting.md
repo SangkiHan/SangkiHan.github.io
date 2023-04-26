@@ -2,7 +2,7 @@
 title: Spring JPA 설정
 descripions: Spring boot JPA 설정 가이드
 author: SangkiHan
-date: 2023-04-26 11:20:00 +0900
+date: 2023-04-11 11:20:00 +0900
 categories: [Spring, JPA]
 tags: [JPA]
 ---
@@ -64,6 +64,7 @@ logging.level.org.hibernate.SQL= debug
 ```
 
 -   ### appication.yml
+
 ``` yml
 spring:
 jpa:

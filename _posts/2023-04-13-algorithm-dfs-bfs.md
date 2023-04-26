@@ -1,7 +1,7 @@
 ---
 title: DFS(깊이 우선 탐색), BFS(너비 우선 탐색)
 author: SangkiHan
-date: 2023-04-26 15:50:00 +0900
+date: 2023-04-13 15:50:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---
@@ -14,7 +14,7 @@ tags: [Algorithm]
 ------------
 ## 깊이 우선 탐색(DFS)
 
-![DFS](/assets/img/post/2023-04-26-algorithm-dfs-bfs/dfs.PNG)
+![DFS](/assets/img/post/2023-04-13-algorithm-dfs-bfs/dfs.PNG)
 
 **정점(node)**에서 시작하여 다음 분기로 넘어가지 전 해당 분기를 전부 탐색하는 방식입니다.
 
@@ -28,7 +28,7 @@ tags: [Algorithm]
 ------------
 ## 너비 우선 탐색(BFS)
 
-![DFS](/assets/img/post/2023-04-26-algorithm-dfs-bfs/bfs.PNG)
+![DFS](/assets/img/post/2023-04-13-algorithm-dfs-bfs/bfs.PNG)
 
 **정점(node)**에서 시작하여 인접한 node들을 먼저 탐색하는 방식입니다.
 
