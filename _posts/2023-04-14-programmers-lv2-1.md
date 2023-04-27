@@ -1,5 +1,5 @@
 ---
-title: 프로그래머스 무인도여행 LV2
+title: 프로그래머스 무인도여행 Lv2
 author: SangkiHan
 date: 2023-04-14 15:50:00 +0900
 categories: [Java, Algorithm]
