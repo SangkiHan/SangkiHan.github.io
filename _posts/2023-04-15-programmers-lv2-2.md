@@ -1,5 +1,5 @@
 ---
-title: 프로그래머스 연속된부분수열의합 LV2
+title: 프로그래머스 연속된부분수열의합 Lv2
 author: SangkiHan
 date: 2023-04-15 16:50:00 +0900
 categories: [Java, Algorithm]
