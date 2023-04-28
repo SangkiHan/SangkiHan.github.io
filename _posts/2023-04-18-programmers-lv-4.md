@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 숫자카드나누기 Lv2
 author: SangkiHan
-date: 2023-04-17 13:50:00 +0900
+date: 2023-04-18 13:50:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---
