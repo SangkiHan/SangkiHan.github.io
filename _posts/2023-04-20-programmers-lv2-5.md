@@ -86,7 +86,7 @@ public class 게임맵최단거리 {
 	static int[] moveY = {1,0,-1,0};
 	public static void main(String[] args) {
 		
-		int[][] maps = {{1,0,1,1,1},{1,0,1,0,1},{1,0,1,1,1},{1,1,1,0,1},{0,0,0,0,1}};
+		int[][] maps = new int[][];
 		
 		solution(maps);
 	}
