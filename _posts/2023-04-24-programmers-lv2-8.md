@@ -31,7 +31,7 @@ public class 숫자변환하기 {
 			int a = Integer.MAX_VALUE;//최대값으로 세팅
 			int b = Integer.MAX_VALUE;
 			int c = Integer.MAX_VALUE;
-			int d = 0;//*2 *3 -n중 제일 최소인 값을 넣어줄 변수
+			
 			if(check(i,2) && (i/2)>=x) {//자연수이고 2로 나누었을 때 x보다 큰 값
 				a = array[i/2];
 			}
@@ -42,14 +42,15 @@ public class 숫자변환하기 {
 				c = array[i-n];
 			}
 			
-			d = Math.min(a, b);//제일 최소값 찾기
-			d = Math.min(d, c);
+			int min = 0;
+			min = Math.min(a, b);//제일 최소값 찾기
+			min= Math.min(min, c);
 			
-			if(d<Integer.MAX_VALUE) {//d가 최대값보다 작을 시 해당인덱스 횟수 +1
-				array[i] = d+1;
+			if(min!=Integer.MAX_VALUE) {//d가 최대값보다 작을 시 해당인덱스 횟수 +1
+				array[i] = min+1;
 			}
 			else {//최대값일시 최대값 세팅
-				array[i] = d;
+				array[i] = min;
 			}
 		}
 		
