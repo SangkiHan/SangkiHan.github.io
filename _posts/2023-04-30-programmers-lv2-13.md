@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 택배상자 Lv2
 author: SangkiHan
-date: 2023-04-29 13:50:00 +0900
+date: 2023-04-30 13:50:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---
