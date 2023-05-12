@@ -13,7 +13,7 @@ tags: [Algorithm]
 public class 피로도 {
 	static int answer = 0;
 	public static void main(String[] args) {
-		int[][] dungeons = {{80,20},{50,40},{30,10}};
+		int[][] dungeons = new int[][];
 		int k = 80;
 		solution(k,dungeons);
 	}
