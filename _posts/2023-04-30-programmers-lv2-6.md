@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 귤고르기 Lv2
 author: SangkiHan
-date: 2023-04-22 15:50:00 +0900
+date: 2023-04-30 15:50:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---

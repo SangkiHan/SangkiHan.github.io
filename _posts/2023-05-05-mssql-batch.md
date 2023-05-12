@@ -1,7 +1,7 @@
 ---
 title: MSSQL 등록되어 있는 배치조회
 author: SangkiHan
-date: 2023-04-26 13:50:00 +0900
+date: 2023-05-05 13:50:00 +0900
 categories: [DB, MSSQL]
 tags: [DB]
 ---

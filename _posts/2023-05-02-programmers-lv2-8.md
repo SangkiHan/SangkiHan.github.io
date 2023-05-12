@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 숫자 변환하기 Lv2
 author: SangkiHan
-date: 2023-04-24 11:45:00 +0900
+date: 2023-05-02 11:45:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---

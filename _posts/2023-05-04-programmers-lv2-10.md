@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 공평하게 나누기 Lv2
 author: SangkiHan
-date: 2023-04-26 11:45:00 +0900
+date: 2023-05-04 11:45:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---

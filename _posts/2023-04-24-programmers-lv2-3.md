@@ -1,7 +1,7 @@
 ---
 title: 프로그래머스 마법의 엘레베이터 Lv2
 author: SangkiHan
-date: 2023-04-16 16:50:00 +0900
+date: 2023-04-24 16:50:00 +0900
 categories: [Java, Algorithm]
 tags: [Algorithm]
 ---

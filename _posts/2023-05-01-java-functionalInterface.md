@@ -1,7 +1,7 @@
 ---
 title: Functional Interface
 author: SangkiHan
-date: 2023-04-23 13:50:00 +0900
+date: 2023-05-01 13:50:00 +0900
 categories: [Java]
 tags: [Java]
 ---
