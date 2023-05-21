@@ -11,7 +11,7 @@ Queue와 Stack을 사용하여 문제내용대로 그대로 코드로 구현하�
 1.  메인 컨테이너와 주문내역 일치하지 않으면 서브컨테이너와 확인
 2.  서브컨테이너와도 맞지않을 시 주문내역에 맞는 상품이 나올 때 까지 서브컨테이너에 add
 3.  서브컨테이너에 들어있는 숫자보다 주문내역이 작다면 break
-
+ 
 ``` java
 import java.util.LinkedList;
 import java.util.Queue;
