@@ -106,6 +106,7 @@ public void restApi(@RequestParam("request") String request) {
 
 #### 5. 어떤 HTTP Method인지 포함하지 않는다.
 ```java
+틀린예
 @RequestMapping(value = "/post/rest-api" , method = {RequestMethod.GET, RequestMethod.POST})
 @ResponseBody
 public void restApi(@RequestParam("request") String request) {
