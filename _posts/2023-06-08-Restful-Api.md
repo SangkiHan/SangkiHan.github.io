@@ -11,7 +11,7 @@ tags: [Http]
 
 Rest는 자원을 이름으로 구분하여 해당 자원의 상태를 주고받는 것입니다.
 
-즉, HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 URI에 대한 CRUD를 적용하는 것을 의미않다.
+즉, HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 URI에 대한 CRUD를 적용하는 것을 의미한다.
 
 >**HTTP Method**  
 >GET: 자원조회  
