@@ -21,7 +21,7 @@ timezone: Asia/Seoul
 
 title: Sangki Han # the main title
 
-tagline:  항상 고민하고 배우려는 개발자  BackEnd Programmer # it will display as the sub-title
+tagline:  항상 고민하고 배우려는 개발자\nBackEnd Programmer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
