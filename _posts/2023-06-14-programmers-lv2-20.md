@@ -68,26 +68,26 @@ public class 전력망을둘로나누기 {
         return answer;
     }
 	
-	static int bfs() {
-		Queue<Integer> visit = new LinkedList<Integer>();//방문해야 할 노드들
-		int linkSize=1;
-		
-    	boolean[] visited = new boolean[N];
-		visit.add(firstStart);//처음 시작은 임의로 넣어줌
-		
-		while(!visit.isEmpty()) {//방문해야 할 노드들이 비어있을 때 까지 반복
-			int start = visit.poll();//방문해야할 노드를 하나 가져옴
-			Queue<Integer> list = linked.getOrDefault(start, new LinkedList<>());//방문해야할 노드가 연결되어있는 노드들을 가져옴
-			for(int end : list) {//노드들을 전부 방문
-				if(visited[end-1]==false) {//방문하지 않았다면
-					visit.add(end);//방문하지 않은 노드 넣어줌
-					linkSize++;//연결되어 있는 노드 숫자 +1
-					visited[end-1]=true;//방문처리
-				}
-			}
-			visited[start-1]=true;//다른 노드들이 다시 방문하는것을 방지하기 위해 시작노드도 방문처리
-		}
-		return linkSize;
-	}
+    static int bfs() {
+        Queue<Integer> visit = new LinkedList<Integer>();//방문해야 할 노드들
+        int linkSize=1;
+        
+        boolean[] visited = new boolean[N];
+        visit.add(firstStart);//처음 시작은 임의로 넣어줌
+        
+        while(!visit.isEmpty()) {//방문해야 할 노드들이 비어있을 때 까지 반복
+            int start = visit.poll();//방문해야할 노드를 하나 가져옴
+            Queue<Integer> list = linked.getOrDefault(start, new LinkedList<>());//방문해야할 노드가 연결되어있는 노드들을 가져옴
+            for(int end : list) {//노드들을 전부 방문
+                if(visited[end-1]==false) {//방문하지 않았다면
+                    visit.add(end);//방문하지 않은 노드 넣어줌
+                    linkSize++;//연결되어 있는 노드 숫자 +1
+                    visited[end-1]=true;//방문처리
+                }
+            }
+            visited[start-1]=true;//다른 노드들이 다시 방문하는것을 방지하기 위해 시작노드도 방문처리
+        }
+        return linkSize;
+    }
 }
 ```
