@@ -23,7 +23,7 @@ public class 전력망을둘로나누기 {
 	static int answer = Integer.MAX_VALUE;//정답
 
 	public static void main(String[] args) {
-		int[][] wires = {{1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}};
+		int[][] wires = new int[][];
 		int n = 9;
 		solution(n, wires);
 	}
