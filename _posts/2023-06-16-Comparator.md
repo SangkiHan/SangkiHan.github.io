@@ -148,4 +148,7 @@ public class ComparatorTest {
 ```
 
 위와 같이 정렬할 시 조건을 걸어서 할 수 있도록 해주는것이 Comperator클래스이다.  
-정렬을 할 시 여러 조건이 추가되어야 한다면 Comperator클래스로 해결하도록하자.
+정렬을 할 시 여러 조건이 추가되어야 한다면 Comperator클래스로 해결하도록하자.  
+
+Comperator클래스를 사용한 코딩테스트 문제이다.  
+[프로그래머스 카카오 파일명 정렬 Lv2](https://sangkihan.github.io/posts/programmers-lv2-21)
