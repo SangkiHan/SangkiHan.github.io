@@ -1,7 +1,7 @@
 ---
 title: 개인 노트북으로 우분투 서버 원격접속하기(2)
 author: SangkiHan
-date: 2023-07-16 10:44:00 +0900
+date: 2023-07-16 10:50:00 +0900
 categories: [Linux, Ubuntu]
 tags: [Ubuntu]
 ---
