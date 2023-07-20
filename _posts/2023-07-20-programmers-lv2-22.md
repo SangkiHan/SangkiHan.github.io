@@ -16,7 +16,7 @@ public class 배달 {
 		int N=6;
 		int K=4;
 		
-		int[][] road = 	{{1, 2, 1}, {1, 3, 2}, {2, 3, 2}, {3, 4, 3}, {3, 5, 2}, {3, 5, 3}, {5, 6, 1}};
+		int[][] road = 	new int[N];
 		
 		solution(N, road, K);
 		
