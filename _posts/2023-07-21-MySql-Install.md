@@ -22,6 +22,7 @@ sudo ufw 3306/tcp
 ```
 ![Jenkins](/assets/img/post/2023-07-21-Mysql-Install/3.PNG)
 
+------------
 ## MySql접속해보기
 ``` bash
 sudo /usr/bin/mysql -u root -p
