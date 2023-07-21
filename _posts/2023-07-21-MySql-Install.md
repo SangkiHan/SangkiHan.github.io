@@ -22,6 +22,12 @@ sudo ufw 3306/tcp
 ```
 ![Jenkins](/assets/img/post/2023-07-21-Mysql-Install/3.PNG)
 
+## MySql접속해보기
+``` bash
+sudo /usr/bin/mysql -u root -p
+```
+![Jenkins](/assets/img/post/2023-07-21-Mysql-Install/4.PNG)
+
 ------------
 ## 외부 접근 가능한 IP할당해주기
 기본적으로 127.0.0.1 IP만 접근가능하게 MySql에서 기본설정 되어 있다.  
