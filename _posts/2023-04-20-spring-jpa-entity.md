@@ -2,7 +2,7 @@
 title: '@Entity'
 author: SangkiHan
 date: 2023-04-20 13:20:00 +0900
-categories: [Spring, JPA]
+categories: [ORM, JPA]
 tags: [JPA]
 ---
 
