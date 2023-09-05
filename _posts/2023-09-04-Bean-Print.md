@@ -1,7 +1,7 @@
 ---
 title: Spring에 등록된 모든 Bean 출력하기
 author: SangkiHan
-date: 2023-09-05 11:20:00 +0900
+date: 2023-09-04 11:20:00 +0900
 categories: [Java, Spring]
 tags: [Java]
 ---
