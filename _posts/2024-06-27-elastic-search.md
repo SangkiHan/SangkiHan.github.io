@@ -117,6 +117,7 @@ Elastic Search 클러스터는 여러 노드와 샤드로 구성되어 있으며
 
 ## Elastic Search CRUD
 + 예시데이터
+
 ``` json
 # employees 인덱스에 저장된 두 개의 문서 예시
 {
