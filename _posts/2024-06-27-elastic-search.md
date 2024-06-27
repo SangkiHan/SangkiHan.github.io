@@ -115,6 +115,94 @@ Elastic Search 클러스터는 여러 노드와 샤드로 구성되어 있으며
 
 ------------
 
+## Elastic Search CRUD
++ 예시데이터
+``` json
+# employees 인덱스에 저장된 두 개의 문서 예시
+{
+  "index": "employees",
+  "document": {
+    "_id": "1",
+    "name": "Alice",
+    "position": "Engineer",
+    "age": 30
+  }
+}
+{
+  "index": "employees",
+  "document": {
+    "_id": "2",
+    "name": "Bob",
+    "position": "Manager",
+    "age": 40
+  }
+}
+
+```
+
++ Create
+``` bash
+# Alice 문서 생성
+curl -X POST "localhost:9200/employees/_doc/1" -H 'Content-Type: application/json' -d'
+{
+  "name": "Alice",
+  "position": "Engineer",
+  "age": 30
+}
+'
+
+# Bob 문서 생성
+curl -X POST "localhost:9200/employees/_doc/2" -H 'Content-Type: application/json' -d'
+{
+  "name": "Bob",
+  "position": "Manager",
+  "age": 40
+}
+'
+
+```
+
++ Read
+``` bash
+# Alice 문서 조회
+curl -X GET "localhost:9200/employees/_doc/1"
+
+# Bob 문서 조회
+curl -X GET "localhost:9200/employees/_doc/2"
+
+```
+
++ Update
+``` bash
+# Alice 문서의 나이 수정
+curl -X POST "localhost:9200/employees/_update/1" -H 'Content-Type: application/json' -d'
+{
+  "doc": {
+    "age": 31
+  }
+}
+'
+
+# Bob 문서의 직책 수정
+curl -X POST "localhost:9200/employees/_update/2" -H 'Content-Type: application/json' -d'
+{
+  "doc": {
+    "position": "Senior Manager"
+  }
+}
+'
+```
+
++ Delete
+``` bash
+# Alice 문서 삭제
+curl -X DELETE "localhost:9200/employees/_doc/1"
+
+# Bob 문서 삭제
+curl -X DELETE "localhost:9200/employees/_doc/2"
+
+```
+
 ## Elastic Search VS RDBMS
 
 ### 데이터 CRUD 방식의 차이
