@@ -141,6 +141,7 @@ Elastic Search 클러스터는 여러 노드와 샤드로 구성되어 있으며
 ```
 
 + Create
+
 ``` bash
 # Alice 문서 생성
 curl -X POST "localhost:9200/employees/_doc/1" -H 'Content-Type: application/json' -d'
@@ -163,6 +164,7 @@ curl -X POST "localhost:9200/employees/_doc/2" -H 'Content-Type: application/jso
 ```
 
 + Read
+
 ``` bash
 # Alice 문서 조회
 curl -X GET "localhost:9200/employees/_doc/1"
@@ -173,6 +175,7 @@ curl -X GET "localhost:9200/employees/_doc/2"
 ```
 
 + Update
+
 ``` bash
 # Alice 문서의 나이 수정
 curl -X POST "localhost:9200/employees/_update/1" -H 'Content-Type: application/json' -d'
@@ -194,6 +197,7 @@ curl -X POST "localhost:9200/employees/_update/2" -H 'Content-Type: application/
 ```
 
 + Delete
+
 ``` bash
 # Alice 문서 삭제
 curl -X DELETE "localhost:9200/employees/_doc/1"
