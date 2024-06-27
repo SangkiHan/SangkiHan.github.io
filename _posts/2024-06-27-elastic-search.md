@@ -124,12 +124,12 @@ RDBMS의 경우 CRUD을 위해 클라이언트에서 관계형 DB서버에 연�
 
 Elasticsearch에서는 Restful API를 사용합니다. HTTP 통신에서 사용하는 GET, POST, PUT, DELETE등의 메소드가 그대로 적용되어 사용됩니다. 하지만 데이터 삽입인 POST의 경우 RDBMS와 다른 특성을 가지는데, 스키마가 미리 저장되어 있지 않더라도 자동으로 필드를 생성하고 저장한다는 점입니다. 이러한 특징은 큰 유연성을 제공하지만 또 다른 문제를 야기할 수 있습니다.
 
-![ElasticSearch](/assets/img/post/2024-06-27-elastic-search/1.PNG)
+![ElasticSearch](/assets/img/post/2024-06-27-elastic-search/1.png)
 
 
 
 ### 용어 비교
-![ElasticSearch](/assets/img/post/2024-06-27-elastic-search/2.PNG)
+![ElasticSearch](/assets/img/post/2024-06-27-elastic-search/2.png)
 
 + Elasticsearch에서 인덱스는 위에서 볼 수 있듯 RDBMS의 Database와 같은 개념입니다. 하지만 Elasticsearch에서는 서로 다른 데이터베이스에서도 검색할 필드명이 존재한다면 여러 개의 데이터베이스를 한번에 조회할 수 있습니다.
 + 기존 RDBMS는 스키마라는 구조에 따라 데이터를 적합한 형태로 변형하여 저장 및 관리하지만, Elasticsearch는 비정형의 다양한 형태의 문서도 자동으로 색인, 검색이 가능하다는 특징이 있습니다.
