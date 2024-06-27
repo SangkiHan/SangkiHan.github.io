@@ -48,8 +48,8 @@ Elastic Search는 오픈 소스 분산 검색 및 분석 엔진으로, Apache Lu
 + 구조: 문서는 JSON 형식으로 표현되며, 다양한 필드(field)를 가질 수 있습니다. 각 필드는 특정 속성 및 그 값으로 구성됩니다.
 + 역할: 문서는 실제 데이터를 담고 있으며, 인덱스 내에서 검색 가능한 모든 정보를 포함합니다.
 
+### 예시 데이터
 ``` json
-# employees 인덱스에 저장된 두 개의 문서 예시
 {
   "index": "employees",
   "document": {
@@ -119,7 +119,6 @@ Elastic Search 클러스터는 여러 노드와 샤드로 구성되어 있으며
 + 예시데이터
 
 ``` json
-# employees 인덱스에 저장된 두 개의 문서 예시
 {
   "index": "employees",
   "document": {
@@ -141,7 +140,7 @@ Elastic Search 클러스터는 여러 노드와 샤드로 구성되어 있으며
 
 ```
 
-+ Create
+### Create
 
 ``` bash
 # Alice 문서 생성
@@ -164,7 +163,7 @@ curl -X POST "localhost:9200/employees/_doc/2" -H 'Content-Type: application/jso
 
 ```
 
-+ Read
+### Read
 
 ``` bash
 # Alice 문서 조회
@@ -175,7 +174,7 @@ curl -X GET "localhost:9200/employees/_doc/2"
 
 ```
 
-+ Update
+### Update
 
 ``` bash
 # Alice 문서의 나이 수정
@@ -197,7 +196,7 @@ curl -X POST "localhost:9200/employees/_update/2" -H 'Content-Type: application/
 '
 ```
 
-+ Delete
+### Delete
 
 ``` bash
 # Alice 문서 삭제
