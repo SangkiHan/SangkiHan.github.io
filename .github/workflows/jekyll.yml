@@ -32,16 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: Setup Ruby
-        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           ruby-version: '3.1' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
@@ -49,10 +49,7 @@ jobs:
           JEKYLL_ENV: production
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: _site        # Jekyll의 빌드 결과물 경로
+        uses: actions/upload-pages-artifact@v3
 
   # Deployment job
   deploy:
@@ -64,6 +61,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          artifact-name: github-pages
+        uses: actions/deploy-pages@v4
