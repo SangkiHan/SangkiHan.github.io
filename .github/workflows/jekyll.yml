@@ -52,8 +52,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: dist/
-
+          path: _site        # Jekyll의 빌드 결과물 경로
+          
   # Deployment job
   deploy:
     environment:
