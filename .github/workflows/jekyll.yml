@@ -53,7 +53,7 @@ jobs:
         with:
           name: github-pages
           path: _site        # Jekyll의 빌드 결과물 경로
-          
+
   # Deployment job
   deploy:
     environment:
@@ -64,6 +64,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v2
         with:
           artifact-name: github-pages
