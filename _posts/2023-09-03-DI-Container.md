@@ -2,7 +2,7 @@
 title: DI Container
 author: SangkiHan
 date: 2023-09-03 11:20:00 +0900
-categories: [Java, Spring]
+categories: [Spring]
 tags: [Java]
 ---
 ------------

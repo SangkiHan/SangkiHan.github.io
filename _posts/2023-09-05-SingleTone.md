@@ -2,7 +2,7 @@
 title: 싱글톤(Singleton) 패턴
 author: SangkiHan
 date: 2023-09-05 11:20:00 +0900
-categories: [Java, Spring]
+categories: [Spring]
 tags: [Java]
 ---
 ------------
