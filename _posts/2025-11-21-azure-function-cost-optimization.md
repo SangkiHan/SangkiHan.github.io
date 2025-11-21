@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Azure Function App 비용 80% 절감하기 - EP3에서 EP1으로 Scale Down"
+title:  "Azure Function App 비용 37% 절감하기 - EP3에서 EP1으로 Scale Down"
 date:   2025-11-01 10:00:00 +0900
 categories: [Cloud, Cost Optimization]
 tags: [Azure, Function App, Cost, Performance, Cloud]
