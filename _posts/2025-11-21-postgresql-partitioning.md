@@ -74,7 +74,7 @@ Execution Time: 12857.234 ms
 ```sql
 -- Extension 설치
 CREATE SCHEMA IF NOT EXISTS partman;
-CREATE EXTENSION IF NOT EXISTS pg_partman SCHEMA partman;
+CREATE EXTENSION pg_partman SCHEMA partman;
 ```
 
 ### 2. 기존 테이블 백업 및 파티션 테이블 생성
@@ -142,10 +142,11 @@ WHERE parent_table = 'batch.weather_forecast_latest';
 ```sql
 -- 점진적 데이터 마이그레이션 (서비스 영향 최소화)
 CALL partman.partition_data_proc(
-    p_parent_table := 'batch.weather_forecast_latest',
-    p_batch_count := 10000,    -- 한 번에 처리할 배치 크기
-    p_batch_interval := 1,     -- 배치 간격(초)
-    p_lock_wait := 2           -- 락 대기 시간(초)
+    p_parent_table := 'batch.weather_forecast_latest'::text,
+    p_batch := 10000,           -- p_batch_count가 아니라 p_batch
+    p_wait := 1,                -- p_batch_interval이 아니라 p_wait (배치 간 대기 시간, 초)
+    p_lock_wait := 2,
+    p_lock_wait_tries := 10
 );
 
 -- 마이그레이션 진행 상황 확인
