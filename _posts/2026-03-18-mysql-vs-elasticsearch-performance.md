@@ -2,7 +2,7 @@
 title: MySQL vs Elasticsearch 해시태그 검색 성능 비교 (100만 건 기준)
 author: SangkiHan
 date: 2026-03-18 14:00:00 +0900
-categories: [Database, Elasticsearch]
+categories: [DB, Elasticsearch]
 tags: [MySQL, Elasticsearch, 성능테스트, 검색엔진]
 ---
 
