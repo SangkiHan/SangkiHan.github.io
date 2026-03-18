@@ -27,7 +27,7 @@ PuppyNote 서비스의 게시물 검색 기능을 개선하면서 MySQL과 Elast
 
 ### 테이블 구조 (MySQL)
 
-<details>
+<details markdown="1">
 <summary>DDL 펼치기</summary>
 
 ```sql
@@ -106,7 +106,7 @@ public class PostDocument {
 
 이번 벤치마크의 `hashtags` 필드는 `Keyword` 타입이므로 `term query`가 역인덱싱을 그대로 탐색해 **O(1)에 가까운 조회**를 한다. 이것이 ES가 압도적으로 빠른 핵심 이유다.
 
-<details>
+<details markdown="1">
 <summary>JSON Document 예시 펼치기</summary>
 
 ```json
@@ -131,7 +131,7 @@ public class PostDocument {
 
 ### MySQL — 게시물 + 해시태그 배치 삽입
 
-<details>
+<details markdown="1">
 <summary>insertPostsToMysql() 펼치기</summary>
 
 ```java
@@ -236,7 +236,7 @@ private void bulkInsertHashtags(List<Long> pids, List<String> tags) {
 
 ### Elasticsearch — 벌크 인덱싱
 
-<details>
+<details markdown="1">
 <summary>indexPostsToElasticsearch() 펼치기</summary>
 
 ```java
@@ -327,7 +327,7 @@ private void indexPostsToElasticsearch() {
 
 ## 벤치마크 코드
 
-<details>
+<details markdown="1">
 <summary>전체 벤치마크 테스트 코드 펼치기</summary>
 
 ```java
@@ -424,7 +424,7 @@ NativeQuery query = NativeQuery.builder()
 
 ## 실행 로그
 
-<details>
+<details markdown="1">
 <summary>전체 실행 로그 펼치기</summary>
 
 ```
