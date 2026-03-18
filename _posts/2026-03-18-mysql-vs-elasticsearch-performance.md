@@ -498,7 +498,7 @@ Execution Time: 294 ms
 13:11:35.286 [Test worker] INFO  p6spy - Execution Time: 735 ms
 
 13:11:36.037 [Test worker] INFO  c.p.c.p.SearchPerformanceBenchmarkTest - --- 결과 (10 반복 평균) ---
-13:11:36.037 [Test worker] INFO  c.p.c.p.SearchPerformanceBenchmarkTest - MySQL JOIN   | 평균 2189ms | 매칭: 0건
+13:11:36.037 [Test worker] INFO  c.p.c.p.SearchPerformanceBenchmarkTest - MySQL JOIN   | 평균 2189ms | 매칭: 10000건
 13:11:36.037 [Test worker] INFO  c.p.c.p.SearchPerformanceBenchmarkTest - ES term query | 평균 75ms  | 매칭: 10000건
 13:11:36.037 [Test worker] INFO  c.p.c.p.SearchPerformanceBenchmarkTest - >>> ES가 MySQL보다 29.2배 빠름
 ```
@@ -527,14 +527,14 @@ Execution Time: 294 ms
 > 1회차에 12,944ms가 소요된 것은 **버퍼 풀 워밍업이 되지 않은 콜드 스타트** 상태였기 때문이다.
 > 2회차부터는 InnoDB 버퍼 풀에 데이터가 캐싱되면서 응답 시간이 크게 줄었다.
 
-### 최종 비교
+### 최종 비교 (1회차 콜드 스타트 제외)
 
-| 방식 | 10회 평균 응답 시간 | 매칭 건수 |
-|---|---|---|
-| MySQL JOIN | **2,189 ms** | 0건 |
+| 방식 | 평균 응답 시간 (Warm Start) | 매칭 건수   |
+|---|---|---------|
+| MySQL JOIN | **957 ms** | 10,000건 |
 | ES term query | **75 ms** | 10,000건 |
 
-> **ES가 MySQL보다 29.2배 빠름**
+> **ES가 MySQL보다 약 12.8배 빠름 (워밍업된 상태 기준)**
 
 ---
 
@@ -544,7 +544,7 @@ Execution Time: 294 ms
 
 1. **JOIN 비용**: `posts`와 `post_hashtags`를 `post_id`로 JOIN하면서 대량의 row를 처리한다.
 2. **COUNT(DISTINCT)**: 해시태그 조건에 맞는 post_id 전체를 읽어 중복 제거를 수행하므로 인덱스를 타더라도 집계 비용이 크다.
-3. **버퍼 풀 의존성**: 1회차처럼 캐시가 없는 상태에서는 디스크 I/O가 발생해 응답 시간이 급격히 늘어난다.
+3. **버퍼 풀 의존성**: 캐시가 없는 상태(콜드 스타트)에서는 디스크 I/O가 발생해 응답 시간이 급격히 늘어난다. (1회차 13.2초)
 4. **행 기반 저장**: MySQL은 행(row) 단위로 데이터를 저장하므로 특정 컬럼 기준 집계가 상대적으로 비효율적이다.
 
 ### Elasticsearch가 빠른 이유
@@ -563,6 +563,8 @@ Execution Time: 294 ms
 이는 MySQL InnoDB 버퍼 풀이 비어 있는 상태에서 100만 건의 데이터를 디스크에서 읽어야 했기 때문이다.
 2회차부터 동일 쿼리가 204~855ms로 내려온 것을 보면 버퍼 풀 캐싱 효과가 상당하다.
 
+따라서 실질적인 성능 비교를 위해 **1회차를 제외한 2~10회차의 평균을 내면 MySQL은 약 957ms**가 소요된다. 이 경우에도 Elasticsearch(75ms)가 약 **12.8배** 더 빠른 성능을 보여준다.
+
 운영 환경에서는 서버 재시작 직후나 버퍼 풀 크기가 부족한 경우 이런 콜드 스타트 문제가 실사용자 경험에 영향을 줄 수 있다.
 
 반면 Elasticsearch는 Lucene 세그먼트 캐시 덕분에 첫 요청부터 일관된 빠른 응답을 보인다.
@@ -573,12 +575,12 @@ Execution Time: 294 ms
 
 | 항목 | MySQL | Elasticsearch |
 |---|---|---|
-| 해시태그 정확 검색 | 평균 2,189ms | 평균 75ms |
+| 해시태그 정확 검색 | 평균 957ms (Warm) | 평균 75ms |
 | 콜드 스타트 민감도 | 높음 | 낮음 |
 | 구성 복잡도 | 낮음 | 높음 |
 | 운영 비용 | 낮음 | 높음 |
 
-100만 건 규모에서 해시태그 검색은 Elasticsearch가 MySQL 대비 약 **29배** 빠른 것으로 측정됐다.
+100만 건 규모에서 해시태그 검색은 (워밍업된 상태 기준) Elasticsearch가 MySQL 대비 약 **13배** 빠른 것으로 측정됐다.
 
 검색 트래픽이 높거나 데이터가 계속 증가하는 서비스라면 Elasticsearch 도입이 합리적인 선택이다.
 단, 운영 복잡도와 인프라 비용이 추가되므로 데이터 규모와 검색 빈도를 고려해 도입 여부를 결정해야 한다.
