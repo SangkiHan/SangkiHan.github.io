@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "대용량 데이터 마이그레이션 성능 개선기"
+title:  "대량 데이터 마이그레이션 성능 개선기"
 date:   2025-08-05 09:00:00 +0900
 categories: [DB, Performance]
 tags: [DB, MongoDB, Migration, Performance]
