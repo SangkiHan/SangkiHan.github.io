@@ -284,20 +284,6 @@ Source (GitHub) → Build (CodeBuild) → Deploy (CodeDeploy)
 
 ## 트러블슈팅
 
-### QueryDSL Q클래스 충돌
-
-```
-error: Attempt to recreate a file for type QBaseTimeEntity
-```
-
-`src/main/generated`에 Q클래스가 커밋되어 있는 상태에서 어노테이션 프로세서가 재생성을 시도할 때 발생합니다.
-
-**해결**: `clean` 태스크 추가
-
-```bash
-./gradlew clean bootJar -x test -x asciidoctor
-```
-
 ### asciidoctor 빌드 실패
 
 ```
@@ -364,15 +350,4 @@ sudo systemctl enable puppynote.service
 ```
 
 ---
-
-## 마무리
-
-전체 파이프라인이 완성되면 `main` 브랜치에 push하는 것만으로 자동 배포가 이루어집니다.
-
-```
-git push origin main
-  → 2~3분 후 자동 배포 완료
-```
-
-ECS 대비 관리 포인트가 적고, 소규모 서비스에서는 EC2 직접 배포가 훨씬 단순하고 비용 효율적입니다.
 
