@@ -2,7 +2,7 @@
 layout: post
 title: "Kafka 동작 원리 Deep Dive - 브로커부터 복제까지"
 date: 2026-03-22 18:00:00 +0900
-categories: [Architecture, Kafka]
+categories: [Event, Kafka]
 tags: [Architecture, Kafka, KRaft, Partition, Replication]
 ---
 

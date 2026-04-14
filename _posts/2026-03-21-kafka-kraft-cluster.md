@@ -2,7 +2,7 @@
 layout: post
 title: "Kafka KRaft 클러스터 구성 - VM 3대로 고가용성 확보하기"
 date: 2026-03-21 16:00:00 +0900
-categories: [Architecture, Kafka]
+categories: [Event, Kafka]
 tags: [Architecture, Kafka, KRaft, Cluster, HA]
 ---
 

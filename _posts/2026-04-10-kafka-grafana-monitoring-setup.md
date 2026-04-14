@@ -2,7 +2,7 @@
 layout: post
 title: "Kafka 클러스터 Grafana/Prometheus Consumer Lag 모니터링 구축"
 date: 2026-04-10 10:00:00 +0900
-categories: [Monitoring, Kafka]
+categories: [Event, Kafka]
 tags: [Monitoring, Kafka, Prometheus, Grafana, ConsumerLag]
 ---
 

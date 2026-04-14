@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Eureka 없이 Spring Cloud Gateway에서 로드밸런싱하기"
-date: 2026-04-14 13:00:00 +0900
+date: 2026-04-14 13:00:00
 categories: [Architecture, Spring Cloud]
 tags: [Architecture, Spring Cloud, Gateway, LoadBalancing]
 ---

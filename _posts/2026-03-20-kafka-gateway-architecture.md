@@ -2,7 +2,7 @@
 layout: post
 title: "IoT Gateway 아키텍처 개선 - Function App에서 Kafka 기반으로"
 date: 2026-03-20 14:00:00 +0900
-categories: [Architecture, Kafka]
+categories: [Event, Kafka]
 tags: [Architecture, Kafka, IoT, Spring Boot]
 ---
 
