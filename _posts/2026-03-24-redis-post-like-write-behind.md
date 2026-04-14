@@ -2,8 +2,8 @@
 title: Redis Write-Behind Cache로 게시물 좋아요 구현하기
 author: SangkiHan
 date: 2026-03-24 10:00:00 +0900
-categories: [Architecture, Redis]
-tags: [Architecture, Redis, Cache, Write-Behind, Spring Boot]
+categories: [DB, Redis]
+tags: [Redis, Cache, Write-Behind, Spring Boot]
 ---
 
 ## 개요
