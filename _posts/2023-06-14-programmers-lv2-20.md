@@ -3,7 +3,7 @@ title: 프로그래머스 전력망을 둘로 나누기 Lv2
 author: SangkiHan
 date: 2023-06-14 10:44:00 +0900
 categories: [Java, Algorithm]
-tags: [Algorithm]
+tags: [Java, Algorithm, Programmers]
 ---
 ------------
 

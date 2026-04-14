@@ -2,8 +2,8 @@
 title: Jest 활용
 author: SangkiHan
 date: 2025-02-11 11:20:00 +0900
-categories: [NEXT-STEP, JS-TDD-CLEANCODE]
-tags: [NEXT-STEP]
+categories: [Study, JavaScript]
+tags: [Study, JavaScript, Jest, TDD, NEXT-STEP]
 ---
 ------------
 

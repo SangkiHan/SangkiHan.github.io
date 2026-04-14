@@ -2,8 +2,8 @@
 title: AWS CodePipeline + EC2 CI/CD 파이프라인 구축 가이드
 author: SangkiHan
 date: 2026-03-17 10:00:00 +0900
-categories: [CI/CD, AWS]
-tags: [AWS, CodePipeline, CodeBuild, CodeDeploy, EC2, CI/CD, Spring Boot]
+categories: [DevOps, CI/CD]
+tags: [DevOps, CI/CD, AWS, CodePipeline, EC2]
 ---
 
 ## 개요

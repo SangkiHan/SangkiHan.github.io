@@ -3,7 +3,7 @@ title: Elasticsearch + Kibana Docker 설치 가이드 (with 인증 활성화)
 author: SangkiHan
 date: 2026-03-11 10:00:00 +0900
 categories: [DB, Elasticsearch]
-tags: [Elasticsearch, Kibana, Docker, Docker-Compose, Search]
+tags: [DB, Elasticsearch, Kibana, Docker]
 ---
 
 ## 개요

@@ -2,8 +2,8 @@
 title: Cookie? Session?
 author: SangkiHan
 date: 2023-06-07 18:39:00 +0900
-categories: [Http]
-tags: [Http]
+categories: [CS, Network]
+tags: [CS, Network, Cookie, Session]
 ---
 ------------
 

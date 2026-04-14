@@ -2,8 +2,8 @@
 title: Spring에 등록된 모든 Bean 출력하기
 author: SangkiHan
 date: 2023-09-04 11:20:00 +0900
-categories: [Spring]
-tags: [Java]
+categories: [Spring, Core]
+tags: [Spring, Bean]
 ---
 ------------
 

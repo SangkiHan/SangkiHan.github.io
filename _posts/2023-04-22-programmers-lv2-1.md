@@ -3,7 +3,7 @@ title: 프로그래머스 무인도여행 Lv2
 author: SangkiHan
 date: 2023-04-22 15:50:00 +0900
 categories: [Java, Algorithm]
-tags: [Algorithm]
+tags: [Java, Algorithm, Programmers]
 ---
 ------------
 섬 전체를 탐색하여 섬들의 합을 찾아야 하기 때문에 DFS를 사용하여 전체를 탐색하여 구현하였다.

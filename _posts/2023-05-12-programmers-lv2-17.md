@@ -3,7 +3,7 @@ title: 프로그래머스 k진수에서 소수갯수 구하기 Lv2
 author: SangkiHan
 date: 2023-05-12 13:39:00 +0900
 categories: [Java, Algorithm]
-tags: [Algorithm]
+tags: [Java, Algorithm, Programmers]
 ---
 ------------
 

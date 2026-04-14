@@ -2,8 +2,8 @@
 layout: post
 title: "Spring Cloud Eureka 서버 구축 및 서비스 등록"
 date: 2026-04-14 10:00:00 +0900
-categories: [Architecture, Spring]
-tags: [Spring, Eureka, ServiceDiscovery, SpringCloud, LoadBalancing]
+categories: [Architecture, Spring Cloud]
+tags: [Architecture, Spring Cloud, Eureka, ServiceDiscovery]
 ---
 
 마이크로서비스 구조에서 서비스 디스커버리를 위해 Spring Cloud Netflix Eureka를 도입했다. Gateway가 각 서비스의 IP를 직접 하드코딩하는 게 아니라, Eureka를 통해 동적으로 서비스를 발견하고 로드밸런싱까지 가능하게 하는 게 목표였다.

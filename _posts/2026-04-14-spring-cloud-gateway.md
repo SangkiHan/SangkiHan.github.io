@@ -2,8 +2,8 @@
 layout: post
 title: "Spring Cloud Gateway 구축 및 Eureka 연동"
 date: 2026-04-14 11:00:00 +0900
-categories: [Architecture, Spring]
-tags: [Spring, Gateway, SpringCloud, Eureka, LoadBalancing, WebFlux]
+categories: [Architecture, Spring Cloud]
+tags: [Architecture, Spring Cloud, Gateway, LoadBalancing]
 ---
 
 기존에는 각 서비스를 직접 호출하거나 Nginx로 라우팅했는데, 서비스가 늘어날수록 관리가 어려워져서 Spring Cloud Gateway를 도입했다. Eureka와 연동해서 서비스가 자동으로 라우팅되고 로드밸런싱까지 되게 구성했다.

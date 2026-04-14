@@ -2,8 +2,8 @@
 title: SSL 핸드쉐이크란?
 author: SangkiHan
 date: 2023-05-10 16:50:00 +0900
-categories: [Http]
-tags: [Http]
+categories: [CS, Network]
+tags: [CS, Network, SSL]
 ---
 ------------
 

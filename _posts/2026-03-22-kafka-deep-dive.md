@@ -3,7 +3,7 @@ layout: post
 title: "Kafka 동작 원리 Deep Dive - 브로커부터 복제까지"
 date: 2026-03-22 18:00:00 +0900
 categories: [Architecture, Kafka]
-tags: [Kafka, KRaft, Raft, Partition, Replication, ConsumerGroup, Offset]
+tags: [Architecture, Kafka, KRaft, Partition, Replication]
 ---
 
 Kafka를 직접 구성하고 운영하면서 생긴 궁금증들을 파고든 내용을 정리했다.

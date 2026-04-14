@@ -2,8 +2,8 @@
 title: Spring Bean
 author: SangkiHan
 date: 2023-04-18 12:32:00 +0900
-categories: [Spring]
-tags: [Spring]
+categories: [Spring, Core]
+tags: [Spring, Bean]
 ---
 
 ## Bean이란? 

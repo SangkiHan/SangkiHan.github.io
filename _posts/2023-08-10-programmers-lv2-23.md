@@ -3,7 +3,7 @@ title: 프로그래머스 영어 끝말잇기 Lv2
 author: SangkiHan
 date: 2023-08-10 16:44:00 +0900
 categories: [Java, Algorithm]
-tags: [Algorithm]
+tags: [Java, Algorithm, Programmers]
 ---
 ------------
 

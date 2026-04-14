@@ -2,8 +2,8 @@
 title: ExcelUtils 메모리 누수 해결 - AutoCloseable 패턴으로 리소스 관리 개선
 author: SangkiHan
 date: 2026-01-23 14:00:00 +0900
-categories: [Java, Spring Boot]
-tags: [Java, Spring Boot, Memory Leak, Apache POI, AutoCloseable, Best Practice]
+categories: [Java, Best Practice]
+tags: [Java, Memory, Apache POI, AutoCloseable]
 ---
 
 ## 개요

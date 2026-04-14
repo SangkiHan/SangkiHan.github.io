@@ -2,8 +2,8 @@
 title: map 메소드 활용
 author: SangkiHan
 date: 2025-02-17 02:20:00 +0900
-categories: [NEXT-STEP, JS-TDD-CLEANCODE]
-tags: [NEXT-STEP]
+categories: [Study, JavaScript]
+tags: [Study, JavaScript, NEXT-STEP]
 ---
 ------------
 

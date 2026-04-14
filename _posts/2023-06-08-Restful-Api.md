@@ -2,8 +2,8 @@
 title: Restful Api?
 author: SangkiHan
 date: 2023-06-08 12:39:00 +0900
-categories: [Http]
-tags: [Http]
+categories: [CS, Network]
+tags: [CS, Network, REST]
 ---
 ------------
 

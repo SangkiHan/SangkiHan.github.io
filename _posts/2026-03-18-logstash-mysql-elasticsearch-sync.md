@@ -3,7 +3,7 @@ title: Logstash로 MySQL → Elasticsearch 주기적 동기화 구축
 author: SangkiHan
 date: 2026-03-18 16:00:00 +0900
 categories: [DB, Elasticsearch]
-tags: [Logstash, MySQL, Elasticsearch, 동기화]
+tags: [DB, Elasticsearch, Logstash, MySQL]
 ---
 
 ## 개요

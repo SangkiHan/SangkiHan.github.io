@@ -3,7 +3,7 @@ title: Functional Interface
 author: SangkiHan
 date: 2023-05-01 13:50:00 +0900
 categories: [Java]
-tags: [Java]
+tags: [Java, FunctionalInterface]
 ---
 
 #### ````Functional Interface````란 Java8부터 도입된 람다식을 이용한 함수형 프로그래밍을 가능하게 하는 인터페이스이다.

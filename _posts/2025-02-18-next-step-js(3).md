@@ -2,8 +2,8 @@
 title: 스프레드 활용
 author: SangkiHan
 date: 2025-02-18 00:20:00 +0900
-categories: [NEXT-STEP, JS-TDD-CLEANCODE]
-tags: [NEXT-STEP]
+categories: [Study, JavaScript]
+tags: [Study, JavaScript, NEXT-STEP]
 ---
 ------------
 

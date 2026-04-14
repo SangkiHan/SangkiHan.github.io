@@ -2,8 +2,8 @@
 title: Ubuntu 리눅스서버에 MySql설치
 author: SangkiHan
 date: 2023-07-21 10:44:00 +0900
-categories: [Linux, Ubuntu]
-tags: [Ubuntu]
+categories: [DevOps, Linux]
+tags: [DevOps, Linux, Ubuntu, MySQL]
 ---
 ------------
 

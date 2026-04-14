@@ -2,8 +2,8 @@
 title: QueryBuilder DML 구현
 author: SangkiHan
 date: 2024-10-15 11:20:00 +0900
-categories: [NEXT-STEP, JPA]
-tags: [NEXT-STEP]
+categories: [Study, JPA]
+tags: [Study, JPA, QueryBuilder, NEXT-STEP]
 ---
 ------------
 

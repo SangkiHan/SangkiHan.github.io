@@ -2,8 +2,8 @@
 title: EC2 단일 서버 Blue/Green 무중단 배포 (Nginx + 포트 스위칭)
 author: SangkiHan
 date: 2026-03-17 11:00:00 +0900
-categories: [CI/CD, AWS]
-tags: [AWS, CodeDeploy, EC2, Blue/Green, Nginx, CI/CD, 무중단배포]
+categories: [DevOps, CI/CD]
+tags: [DevOps, CI/CD, AWS, EC2, BlueGreen, Nginx]
 ---
 
 ## 개요

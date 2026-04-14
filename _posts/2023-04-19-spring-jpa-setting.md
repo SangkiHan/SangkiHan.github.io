@@ -3,8 +3,8 @@ title: Spring JPA 설정
 descripions: Spring boot JPA 설정 가이드
 author: SangkiHan
 date: 2023-04-19 11:20:00 +0900
-categories: [ORM, JPA]
-tags: [JPA]
+categories: [Spring, JPA]
+tags: [Spring, JPA]
 ---
 
 ------------

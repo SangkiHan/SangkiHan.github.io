@@ -3,7 +3,7 @@ layout: post
 title: "Kafka KRaft 클러스터 구성 - VM 3대로 고가용성 확보하기"
 date: 2026-03-21 16:00:00 +0900
 categories: [Architecture, Kafka]
-tags: [Kafka, KRaft, Cluster, HA, Docker, Architecture]
+tags: [Architecture, Kafka, KRaft, Cluster, HA]
 ---
 
 이전 포스팅에서 Kafka 단일 브로커로 IoT 데이터 파이프라인을 구성했다. 단일 브로커는 브로커가 죽는 순간 전체 파이프라인이 멈춘다. 운영 환경에서는 이를 허용할 수 없어 VM 3대로 Kafka 클러스터를 구성했다.

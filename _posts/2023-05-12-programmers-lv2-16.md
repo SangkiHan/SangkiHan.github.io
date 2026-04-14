@@ -3,7 +3,7 @@ title: 프로그래머스 피로도 Lv2
 author: SangkiHan
 date: 2023-05-12 10:50:00 +0900
 categories: [Java, Algorithm]
-tags: [Algorithm]
+tags: [Java, Algorithm, Programmers]
 ---
 ------------
 

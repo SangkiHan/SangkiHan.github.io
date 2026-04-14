@@ -2,8 +2,8 @@
 layout: post
 title: "Spring Cloud Eureka 서비스 등록/해제 이벤트 감지"
 date: 2026-04-14 12:00:00 +0900
-categories: [Architecture, Spring]
-tags: [Spring, Eureka, SpringCloud, Event, Alert]
+categories: [Architecture, Spring Cloud]
+tags: [Architecture, Spring Cloud, Eureka, Event, Alert]
 ---
 
 Eureka 서버에 서비스가 올라오거나 내려갈 때 알람을 보내고 싶었다. Spring Cloud Eureka Server는 서비스 등록/해제 시 ApplicationEvent를 발행하기 때문에 `@EventListener`로 간단하게 감지할 수 있다.

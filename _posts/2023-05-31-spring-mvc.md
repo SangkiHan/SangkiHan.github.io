@@ -2,8 +2,8 @@
 title: Spring MVC 동작원리
 author: SangkiHan
 date: 2023-05-31 09:39:00 +0900
-categories: [Spring]
-tags: [Spring]
+categories: [Spring, Core]
+tags: [Spring, MVC]
 ---
 ------------
 ## 동작원리

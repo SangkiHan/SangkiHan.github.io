@@ -2,8 +2,8 @@
 title: Elastic Search 란?
 author: SangkiHan
 date: 2024-06-27 11:20:00 +0900
-categories: [CS]
-tags: [CS]
+categories: [DB, Elasticsearch]
+tags: [DB, Elasticsearch]
 ---
 ------------
 

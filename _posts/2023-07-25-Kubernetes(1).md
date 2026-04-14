@@ -2,8 +2,8 @@
 title: Kubernetes 실습 환경 구축(1)
 author: SangkiHan
 date: 2023-07-25 13:39:00 +0900
-categories: [Kubernetes]
-tags: [Kubernetes]
+categories: [DevOps, Kubernetes]
+tags: [DevOps, Kubernetes]
 ---
 ------------
 

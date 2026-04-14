@@ -3,7 +3,7 @@ title: Comparator를 활용한 리스트 정렬
 author: SangkiHan
 date: 2023-06-19 10:44:00 +0900
 categories: [Java]
-tags: [Java]
+tags: [Java, Comparator]
 ---
 ------------
 

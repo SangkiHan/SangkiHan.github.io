@@ -3,7 +3,7 @@ layout: post
 title:  "PostgreSQL 파티셔닝으로 대용량 테이블 성능 개선하기"
 date:   2025-11-21 09:00:00 +0900
 categories: [DB, Performance]
-tags: [PostgreSQL, Partitioning, Performance, pg_partman]
+tags: [DB, PostgreSQL, Partitioning, Performance]
 ---
 
 # 대용량 날씨 데이터, 파티셔닝으로 해결하다

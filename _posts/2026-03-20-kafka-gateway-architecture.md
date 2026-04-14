@@ -3,7 +3,7 @@ layout: post
 title: "IoT Gateway 아키텍처 개선 - Function App에서 Kafka 기반으로"
 date: 2026-03-20 14:00:00 +0900
 categories: [Architecture, Kafka]
-tags: [Kafka, MongoDB, Spring Boot, IoT, Architecture, Docker]
+tags: [Architecture, Kafka, IoT, Spring Boot]
 ---
 
 IoT 기기에서 수집된 데이터를 저장하는 파이프라인을 운영하던 중, 기존 아키텍처의 한계를 느끼고 Kafka 기반으로 전환하게 되었다.

@@ -2,8 +2,8 @@
 title: Spring Boot + Prometheus + Grafana 모니터링 구축기 (별도 서버 분리)
 author: SangkiHan
 date: 2026-02-19 20:00:00 +0900
-categories: [Monitoring, DevOps]
-tags: [Prometheus, Grafana, Spring Boot, Docker, Actuator, Micrometer, Monitoring]
+categories: [Monitoring, Prometheus]
+tags: [Monitoring, Prometheus, Grafana, Spring Boot]
 ---
 
 ## 개요

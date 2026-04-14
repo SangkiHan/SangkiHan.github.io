@@ -2,8 +2,8 @@
 title: Controller Advice 활용
 author: SangkiHan
 date: 2024-04-30 11:20:00 +0900
-categories: [Spring]
-tags: [Spring]
+categories: [Spring, Core]
+tags: [Spring, ControllerAdvice, ExceptionHandler]
 ---
 ------------
 

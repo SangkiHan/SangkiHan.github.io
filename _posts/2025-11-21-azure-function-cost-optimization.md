@@ -2,8 +2,8 @@
 layout: post
 title:  "Azure Function App 비용 37% 절감하기 - EP3에서 EP1으로 Scale Down"
 date:   2025-11-01 10:00:00 +0900
-categories: [Cloud, Cost Optimization]
-tags: [Azure, Function App, Cost, Performance, Cloud]
+categories: [Cloud, Azure]
+tags: [Cloud, Azure, Function App, Cost]
 ---
 
 회사에서 Azure Function App을 사용한 서버리스 아키텍처를 운영하고 있었다.   

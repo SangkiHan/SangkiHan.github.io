@@ -2,8 +2,8 @@
 title: Grafana Alert 설정 가이드 - JVM 힙 메모리 임계치 알림
 author: SangkiHan
 date: 2026-03-06 16:00:00 +0900
-categories: [Monitoring, DevOps]
-tags: [Prometheus, Grafana, Alert, JVM, Memory, Monitoring, Slack]
+categories: [Monitoring, Prometheus]
+tags: [Monitoring, Prometheus, Grafana, Alert, Slack]
 ---
 
 ## 개요

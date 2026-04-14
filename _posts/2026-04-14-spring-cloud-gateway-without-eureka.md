@@ -2,8 +2,8 @@
 layout: post
 title: "Eureka 없이 Spring Cloud Gateway에서 로드밸런싱하기"
 date: 2026-04-14 13:00:00 +0900
-categories: [Architecture, Spring]
-tags: [Spring, Gateway, SpringCloud, LoadBalancing]
+categories: [Architecture, Spring Cloud]
+tags: [Architecture, Spring Cloud, Gateway, LoadBalancing]
 ---
 
 Spring Cloud Eureka를 도입했다가 제거하고 Gateway에서 직접 VM을 관리하는 방식으로 변경했다. 이유와 설정 방법을 정리한다.

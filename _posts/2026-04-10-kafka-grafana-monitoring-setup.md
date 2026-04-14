@@ -2,8 +2,8 @@
 layout: post
 title: "Kafka 클러스터 Grafana/Prometheus Consumer Lag 모니터링 구축"
 date: 2026-04-10 10:00:00 +0900
-categories: [Architecture, Kafka]
-tags: [Kafka, Grafana, Prometheus, JMX, ConsumerLag, Monitoring, KRaft]
+categories: [Monitoring, Kafka]
+tags: [Monitoring, Kafka, Prometheus, Grafana, ConsumerLag]
 ---
 
 3대의 Azure VM에 구축한 Kafka KRaft 클러스터를 Grafana/Prometheus로 모니터링하는 방법을 정리한다.

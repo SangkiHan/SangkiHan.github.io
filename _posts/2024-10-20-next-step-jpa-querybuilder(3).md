@@ -2,8 +2,8 @@
 title: EntityManager 구현
 author: SangkiHan
 date: 2024-10-20 11:20:00 +0900
-categories: [NEXT-STEP, JPA]
-tags: [NEXT-STEP]
+categories: [Study, JPA]
+tags: [Study, JPA, EntityManager, NEXT-STEP]
 ---
 ------------
 

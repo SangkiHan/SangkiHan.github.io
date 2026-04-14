@@ -2,8 +2,8 @@
 title: Gradle Permission
 author: SangkiHan
 date: 2023-09-06 11:20:00 +0900
-categories: [CI/CD, Jenkins]
-tags: [CI/CD]
+categories: [DevOps, CI/CD]
+tags: [DevOps, CI/CD, Gradle]
 ---
 ------------
 

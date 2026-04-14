@@ -2,8 +2,8 @@
 title: DI Container
 author: SangkiHan
 date: 2023-09-03 11:20:00 +0900
-categories: [Spring]
-tags: [Java]
+categories: [Spring, Core]
+tags: [Spring, DI, IoC]
 ---
 ------------
 
