@@ -52,14 +52,14 @@ public void migrationElecBaseToMongo() {
     }
 ```
 
-1시간씩 데이터를 조회하고 하나하나 파싱 후 바로 Mongo에 각가 insert를 하니 아래와 같은 성능이 나왔다.
+하루 데이터를 조회하고 하나하나 파싱 후 바로 Mongo에 각가 insert를 하니 아래와 같은 성능이 나왔다.
 
 === ElecBase 마이그레이션 완료 ===  
 총 소요시간: 1682151ms (1682.151초)  
 처리된 원본 데이터: 383138건  
 생성된 ElecBase: 4597656건
 
-1시간 데이터를 넣는데 약 30분… 너무 길다
+하루 데이터를 넣는데 약 30분… 너무 길다
 
 ```java
 public void migrationElecBaseToMongo() {
