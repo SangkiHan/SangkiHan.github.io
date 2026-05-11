@@ -126,7 +126,24 @@ public class FoodDocument {
 
 ---
 
-## Ollama 서비스 구현
+## Ollama 서비스 구현 - Structured Output
+
+초기에는 AI 응답에서 `[GOOD]`, `[NOTION]`, `[BAD]` 태그를 정규식으로 파싱하는 방식을 사용했다.
+
+```java
+// 초기 구현 - 정규식 파싱
+Matcher matcher = SAFETY_PATTERN.matcher(content);
+if (matcher.find()) {
+    SafetyLevel safetyLevel = SafetyLevel.valueOf(matcher.group(1));
+    String[] parts = content.split("\\R", 2);
+    String answer = (parts.length > 1 ? parts[1] : "").trim();
+    ...
+}
+```
+
+문제는 AI가 프롬프트 지시를 완전히 따르지 않는 경우가 있다는 것이다. "강아지에게 안전하다면: [GOOD]" 처럼 태그 앞에 설명을 붙이거나, 포맷을 살짝 바꾸면 파싱이 깨진다.
+
+Spring AI의 **Structured Output** 기능을 사용하면 이 문제를 근본적으로 해결할 수 있다. AI 응답을 지정한 Java 타입으로 직접 변환해준다.
 
 ```java
 @Slf4j
@@ -135,17 +152,10 @@ public class OllamaService {
 
     private static final String SYSTEM_PROMPT =
             "당신은 반려동물 영양 전문가입니다.\n" +
-                    "사용자의 질문이 강아지 또는 반려동물에게 먹이는 음식에 관한 질문인지 판단하세요.\n\n" +
-                    "음식 관련 질문이 아니라면: 정확히 \"[NOT_FOOD]\" 라고만 응답하세요. 다른 내용은 절대 추가하지 마세요.\n\n" +
-                    "음식 관련 질문이라면: 반드시 답변 첫 줄에 아래 중 하나를 단독으로 작성하세요.\n" +
-                    "- 강아지에게 안전하다면: [GOOD]\n" +
-                    "- 주의가 필요하다면: [NOTION]\n" +
-                    "- 절대 먹이면 안 된다면: [BAD]\n\n" +
-                    "두 번째 줄부터 해당 음식이 강아지에게 안전한지, 영양 정보, 주의사항, 적절한 섭취량 등에 대해 " +
-                    "친절하고 자세하게 한국어로 답변해주세요.";
-
-    private static final String NOT_FOOD_MARKER = "NOT_FOOD";
-    private static final Pattern SAFETY_PATTERN = Pattern.compile("\\[(GOOD|NOTION|BAD)\\]");
+                    "사용자의 질문이 강아지 또는 반려동물에게 먹이는 음식에 관한 질문인지 판단하고 JSON으로 응답하세요.\n\n" +
+                    "isFood: 음식 관련 질문이면 true, 아니면 false\n" +
+                    "safetyLevel: GOOD(안전) / NOTION(주의) / BAD(위험) / null (음식 아닐 때)\n" +
+                    "answer: 음식 관련 질문이면 영양 정보, 주의사항, 적절한 섭취량을 한국어로 상세히 작성, 아니면 null";
 
     private final ChatClient chatClient;
 
@@ -157,31 +167,27 @@ public class OllamaService {
 
     public OllamaResult ask(String question) {
         try {
-            String content = chatClient.prompt()
+            FoodAnalysis analysis = chatClient.prompt()
                     .user(question)
                     .call()
-                    .content();
+                    .entity(FoodAnalysis.class);  // Structured Output
 
-            if (content == null || content.contains(NOT_FOOD_MARKER)) {
+            if (analysis == null || !analysis.isFood()) {
                 return OllamaResult.notFood();
             }
 
-            Matcher matcher = SAFETY_PATTERN.matcher(content);
-            if (matcher.find()) {
-                SafetyLevel safetyLevel = SafetyLevel.valueOf(matcher.group(1));
-                // 첫 줄(안전 코드 포함) 전체 제거 후 나머지를 답변으로 사용
-                String[] parts = content.split("\\R", 2);
-                String answer = (parts.length > 1 ? parts[1] : "").trim();
-                return OllamaResult.food(answer, safetyLevel);
-            }
+            SafetyLevel safetyLevel = analysis.safetyLevel() != null
+                    ? SafetyLevel.valueOf(analysis.safetyLevel())
+                    : null;
 
-            log.warn("AI 응답에서 안전 코드를 파싱하지 못했습니다.");
-            return OllamaResult.food(content.trim(), null);
+            return OllamaResult.food(analysis.answer(), safetyLevel);
         } catch (Exception e) {
             log.error("Ollama 호출 실패: {}", e.getMessage());
             throw new RuntimeException("AI 서비스 호출에 실패했습니다.");
         }
     }
+
+    record FoodAnalysis(boolean isFood, String safetyLevel, String answer) {}
 
     public record OllamaResult(boolean isFood, String answer, SafetyLevel safetyLevel) {
         public static OllamaResult food(String answer, SafetyLevel safetyLevel) {
@@ -194,9 +200,28 @@ public class OllamaService {
 }
 ```
 
-**안전 등급 파싱**이 핵심이다. AI에게 첫 줄에 `[GOOD]`, `[NOTION]`, `[BAD]` 중 하나를 반드시 출력하도록 지시하고, 정규식으로 파싱해 DB에 저장한다.
+### Structured Output 내부 동작
 
-첫 줄 제거 시 `content.replace("[GOOD]", "")` 방식으로 태그만 지우면 "강아지에게 안전하다면: " 같은 앞 텍스트가 남는 문제가 있다. `split("\\R", 2)`로 첫 줄 전체를 잘라내는 방식을 사용했다.
+`entity(FoodAnalysis.class)`를 호출하면 Spring AI가 `FoodAnalysis` 클래스의 JSON 스키마를 자동으로 생성해 프롬프트에 추가한다.
+
+```
+Your response should be in JSON format.
+Do not include any explanations, only provide a RFC8259 compliant JSON response.
+The JSON schema for the response:
+{
+  "isFood": boolean,
+  "safetyLevel": string,
+  "answer": string
+}
+```
+
+AI가 JSON을 반환하면 Spring AI가 `FoodAnalysis` 객체로 역직렬화한다. 정규식도, 첫 줄 파싱도 필요 없다.
+
+| | 정규식 파싱 | Structured Output |
+|--|------------|-------------------|
+| AI 포맷 이탈 시 | 파싱 실패, null 반환 | 역직렬화 실패 예외 |
+| 파싱 코드 | 정규식 + split | 없음 |
+| 필드 추가 | 프롬프트 + 파싱 코드 수정 | record 필드 추가만 |
 
 ---
 
@@ -425,6 +450,8 @@ output {
 
 초기 구현에서 ES가 다운되면 503이 그대로 전파되어 500 에러가 발생했다. `FoodSearchService.search()`에서 모든 예외를 catch해 빈 리스트를 반환하도록 수정했다. ES 장애 시에도 AI 호출로 자연스럽게 폴백된다.
 
-**3. AI 응답에 안전 코드 설명 텍스트 포함**
+**3. AI 응답 파싱 불안정 → Structured Output으로 해결**
 
-`[GOOD]` 태그만 제거(`content.replace("[GOOD]", "")`)하면 앞의 "강아지에게 안전하다면: " 텍스트가 답변에 그대로 남았다. `split("\\R", 2)`로 첫 줄 전체를 제거하는 방식으로 해결했다.
+정규식으로 `[GOOD]` 태그를 파싱할 때 AI가 "강아지에게 안전하다면: [GOOD]" 처럼 앞에 설명을 붙이면 태그만 제거해도 설명 텍스트가 답변에 남는 문제가 있었다. `split("\\R", 2)`로 첫 줄 전체를 제거하는 방식으로 1차 해결했지만, AI가 포맷을 지키지 않는 근본적인 문제는 남아있었다.
+
+Spring AI의 Structured Output(`entity(FoodAnalysis.class)`)으로 전환해 JSON 스키마를 강제하도록 변경했다. 이후 파싱 관련 문제가 사라졌다.
