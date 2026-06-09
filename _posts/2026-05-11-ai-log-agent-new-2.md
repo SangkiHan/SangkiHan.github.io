@@ -119,7 +119,7 @@ async def _analysis_pipeline(server: Server, payload: ErrorEventPayload) -> None
             server.id, raw_log, payload.stack_trace
         )
 
-        # 4. 수정 결과를 DB에 미리 저장 (approve 시 즉시 사용)
+        # 4. 원본 파일 저장 + 패치 사전 계산
         suggestion = _enrich_with_patched_content(suggestion, server.id)
 
         # 5. DB 저장 + Slack 전송
@@ -129,7 +129,79 @@ async def _analysis_pipeline(server: Server, payload: ErrorEventPayload) -> None
         await slack_service.send_analysis(server, record)
 ```
 
-파이프라인의 핵심 원칙은 **분석 시점에 모든 계산을 완료**하는 것이다. `_enrich_with_patched_content()`가 LLM이 제안한 `before/after`를 실제 파일에 적용해 완성된 파일 내용(`patched_content`)을 미리 계산한다. 수락 버튼 클릭 시에는 이미 계산된 내용을 그대로 GitHub에 푸시하면 된다.
+---
+
+## 파일 패치 전략 — 삽질의 기록
+
+처음 설계는 단순했다. LLM이 `before`/`after` 스니펫을 주면 파일에서 `before`를 찾아 `after`로 교체한다. 그런데 **LLM이 주는 `before`가 실제 파일과 미묘하게 달라서** substring 매칭이 계속 실패했다.
+
+문제 패턴:
+- 줄 끝 공백 차이 (`\r\n` vs `\n`)
+- 들여쓰기가 빠진 채로 출력 (클래스 내부 메서드인데 0칸 들여쓰기로 출력)
+- LLM이 실제로 없는 코드를 hallucinate
+
+이를 해결하기 위해 4단계 fallback 전략을 구현했다.
+
+```python
+def _find_and_replace(original, before, after):
+    # 1차: 정확한 매칭
+    if before in original:
+        return original.replace(before, after, 1)
+
+    # 2차: CRLF → LF 정규화
+    orig_lf = original.replace("\r\n", "\n")
+    before_lf = before.replace("\r\n", "\n")
+    if before_lf in orig_lf:
+        return orig_lf.replace(before_lf, after_lf, 1)
+
+    # 3차: 들여쓰기 보정 (4/8/2/12칸 시도)
+    before_dedented = textwrap.dedent(before_lf)
+    for indent in ("    ", "        ", "  ", "\t", "            "):
+        re_before = "\n".join(indent + l if l.strip() else l
+                              for l in before_dedented.splitlines())
+        if re_before in orig_lf:
+            ...
+            return orig_lf.replace(re_before, re_after, 1)
+
+    # 4차: 라인 단위 fuzzy 매칭 (공백·빈 줄 완전 무시)
+    return _fuzzy_replace(orig_lf, before_lf, after_lf)
+```
+
+4차 fuzzy 매칭은 각 라인을 `strip()`해서 순서대로 찾는다. LLM이 들여쓰기를 어떻게 출력해도 내용만 맞으면 매칭된다.
+
+그런데 여기서도 LLM이 아예 없는 코드를 `before`로 hallucinate하면 4단계 모두 실패한다.
+
+### 최종 해결: 원본 저장 + 수락 시 LLM 위임
+
+분석 시점에 수정 대상 파일의 **원본 전체**를 DB에 저장해두고, 수락 버튼 클릭 시 3단계로 패치를 시도한다.
+
+```
+분석 시점
+  → 원본 파일 전체를 original_content로 DB 저장
+  → before→after fuzzy 매칭 시도
+  → 성공: patched_content도 함께 저장
+
+수락 클릭
+  → patched_content 있으면 바로 GitHub 푸시
+  → 없으면 1단계: original_content에 fuzzy 매칭 재시도
+  → 실패 시 2단계: LLM에게 직접 위임
+      "이 파일에 이 변경사항을 적용해줘"
+      → Ollama가 원본 + before/after를 보고 완성 파일 반환
+  → 그래도 실패 시: 수정 없이 description-only PR
+```
+
+```python
+# github_service.py — 수락 시 패치 적용
+if not patched_content:
+    result = _find_and_replace(original_content, before, after)  # fuzzy
+    if result:
+        patched_content = result
+    else:
+        # LLM에게 패치 적용 위임
+        patched_content = await apply_patch_with_llm(original_content, before, after)
+```
+
+LLM은 `before`가 조금 틀려도 의도를 파악해서 올바른 위치에 `after`를 적용한다. string 매칭으로는 절대 해결 못 하는 hallucination 문제를 LLM으로 우회한다.
 
 ---
 
