@@ -209,7 +209,6 @@ async def search_relevant_files(server_id: int, query: str, n_results: int = 5) 
         query_embeddings=query_embeddings,
         n_results=candidates,
     )
-    # ... reranker로 재순위화 (4편에서 설명) ...
     return paths  # 파일 경로 목록
 ```
 

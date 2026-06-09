@@ -27,7 +27,6 @@ tags: [FastAPI, Ollama, Slack, LLM, Python, DevOps]
 | LLM 런타임 | Ollama |
 | 분석 모델 | gemma4:12b |
 | 임베딩 모델 | nomic-embed-text |
-| Rerank 모델 | qllama/bge-reranker-v2-m3 |
 
 M4의 Neural Engine이 LLM 추론을 처리한다. 24GB 통합 메모리 덕분에 12B 파라미터 모델을 빠르게 돌릴 수 있다.
 
@@ -66,8 +65,6 @@ GitHub API (수락 시)
 **gemma4:12b** — 에러 로그를 받아 원인을 분석하고 수정 코드를 JSON으로 반환한다. tool calling을 지원해서 필요한 소스 파일을 직접 검색해가며 분석한다.
 
 **nomic-embed-text** — 소스 파일을 벡터로 변환해서 ChromaDB에 저장한다. 텍스트를 숫자 배열로 변환하는 임베딩 전용 모델로, 분석 LLM과는 별개로 동작한다.
-
-**qllama/bge-reranker-v2-m3** — 벡터 검색 결과를 실제 관련도 기준으로 재정렬한다. 코사인 유사도만으로는 놓칠 수 있는 문서를 보완한다.
 
 ---
 
