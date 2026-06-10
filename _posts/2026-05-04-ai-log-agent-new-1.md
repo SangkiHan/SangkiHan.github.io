@@ -129,3 +129,7 @@ puppynote-server      FastAPI        Ollama(M4)      Slack
 ```
 
 개발자는 Slack에서 수락 버튼 하나만 누르면 된다.
+
+---
+
+➡️ 다음 글: [AI 오류 자동 분석 에이전트 구축기 (2) — FastAPI와 파이프라인 설계](/posts/ai-log-agent-new-2/)

@@ -265,3 +265,7 @@ puppynote-server    FastAPI(노트북)     Ollama(M4)     GitHub     Slack
      │                 │──────────────────────────────────────────────▶
      │                 │                                     PR URL  │
 ```
+
+---
+
+➡️ 다음 글: [AI 오류 자동 분석 에이전트 구축기 (3) — Embedding 모델과 ChromaDB RAG 구축](/posts/ai-log-agent-new-3/)
