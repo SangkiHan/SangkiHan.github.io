@@ -2,7 +2,7 @@
 layout: post
 title: "개인 비서 — 할 일 목록과 리마인더 구현"
 date: 2026-06-06 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [APScheduler, SQLAlchemy, MySQL, Todo, Reminder, FastAPI, Python]
 ---
 

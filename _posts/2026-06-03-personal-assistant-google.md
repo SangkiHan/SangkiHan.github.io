@@ -2,7 +2,7 @@
 layout: post
 title: "개인 비서에 Google Calendar·Sheets 연동하기 — 서비스 계정과 삽질"
 date: 2026-06-03 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [Google, Calendar, Sheets, ServiceAccount, Python, OAuth]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Slack으로 부리는 개인 비서 — FastAPI + LangGraph로 만든 AI 에이전트"
 date: 2026-05-28 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [Slack, FastAPI, LangGraph, LLM, Ollama, Python, PersonalAssistant]
 ---
 

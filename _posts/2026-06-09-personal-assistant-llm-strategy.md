@@ -2,7 +2,7 @@
 layout: post
 title: "개인 비서 LLM 전략 — Gemini 우선, Ollama 폴백"
 date: 2026-06-09 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [Gemini, Ollama, LLM, Fallback, LangChain, Python, RateLimit]
 ---
 

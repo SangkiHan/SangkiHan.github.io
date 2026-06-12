@@ -2,7 +2,7 @@
 layout: post
 title: "개인 비서에 장기 기억 달기 — ChromaDB + Ollama 임베딩"
 date: 2026-05-31 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [ChromaDB, VectorDB, Embedding, Ollama, Memory, RAG, Python]
 ---
 

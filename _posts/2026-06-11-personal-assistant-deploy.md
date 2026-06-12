@@ -2,7 +2,7 @@
 layout: post
 title: "개인 비서 Docker 배포 & 운영 중 마주친 문제들"
 date: 2026-06-11 10:00:00 +0900
-categories: [AI, Side-Project]
+categories: [AI, 개인비서 구축]
 tags: [Docker, Jenkins, ChromaDB, Slack, Debugging, Python, DevOps]
 ---
 
