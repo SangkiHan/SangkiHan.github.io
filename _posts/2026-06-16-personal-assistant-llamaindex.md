@@ -94,6 +94,30 @@ doc = Document(text=text, id_=doc_id, metadata={"timestamp": ..., "user_id": use
 index.insert(doc)  # 임베딩 + 저장 자동 처리
 ```
 
+### 실제 저장 예시
+
+Slack에서 "결혼정장 업체명: 슈트패브릭, 전화번호: 0507-1370-9606, 분류: 결혼정장업체"를 기억시킨 뒤 `/admin/memory/list/{user_id}`로 확인한 결과다.
+
+```json
+{
+  "id": "aa65ab63-99fd-4436-be7b-09aa674c5e5e",
+  "doc": "결혼정장 업체명: 슈트패브릭, 전화번호: 0507-1370-9606, 분류: 결혼정장업체",
+  "meta": {
+    "ref_doc_id": "mem_1781587920315",
+    "document_id": "mem_1781587920315",
+    "_node_type": "TextNode",
+    "_node_content": "{\"id_\": \"aa65ab63-...\", \"text\": \"\", ...}",
+    "timestamp": "1781587920",
+    "user_id": "U0B8D85JQUW",
+    "doc_id": "mem_1781587920315"
+  }
+}
+```
+
+주목할 점은 `_node_type: "TextNode"`다. 기존에 ChromaDB를 직접 호출하면 이 필드가 없었다. LlamaIndex가 저장 시 노드 재구성에 필요한 메타데이터를 자동으로 추가하기 때문에, 이후 `VectorStoreIndex.as_retriever()`가 결과를 완전히 복원할 수 있다.
+
+`_node_content`의 `text` 필드가 비어있는 것도 정상이다. LlamaIndex는 ChromaDB의 `documents` 필드에 텍스트를 저장하고 `_node_content`에는 중복 저장하지 않는다.
+
 ---
 
 ## 2. agent_service — 대화 히스토리 압축
