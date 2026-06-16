@@ -1,7 +1,7 @@
 ---
 title: "AI 개인 비서에 LlamaIndex 도입 — 기억 검색부터 Knowledge Graph까지"
 author: SangkiHan
-date: 2026-06-16 20:00:00 +0900
+date: 2026-06-16 11:00:00 +0900
 categories: [AI, 개인비서 구축]
 tags: [LlamaIndex, LangGraph, ChromaDB, RAG, KnowledgeGraph, 개인비서]
 ---
