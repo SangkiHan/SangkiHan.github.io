@@ -351,10 +351,148 @@ mkdir -p /var/lib/jenkins/personal-assistant/user_files
 | 파일 다운로드 | httpx + bot token | Slack `url_private`는 인증 필요 |
 | 파일 검색 | ChromaDB 벡터 유사도 | 정확한 파일명 기억 불필요 |
 | 임베딩 대상 | 파일명 + 카테고리 + 날짜 | 이진 파일 내용 파싱 불필요 |
-| 파일 전송 | files_upload_v2 | 구 API deprecated |
-| 카테고리 추출 | 짧은 텍스트 휴리스틱 | LLM 호출 오버헤드 없음 |
-| 다중 파일 조회 | zip 묶음 | 파일 수만큼 API 호출 불필요 |
+| 파일 전송 | files_upload_v2 개별 전송 | Slack에서 자연스럽게 확인 가능 |
+| 카테고리 추출 | 문장 패턴 우선 + 짧은 텍스트 | LLM 호출 오버헤드 없음 |
+| 다중 파일 조회 | 개별 파일 순차 전송 | 파일마다 미리보기·다운로드 가능 |
 | 영속성 | Docker 볼륨 마운트 | 컨테이너 재시작 대응 |
+
+---
+
+## 트러블슈팅
+
+실제로 붙여 쓰다 보니 바로 문제들이 나왔다. 기록해둔다.
+
+---
+
+### 1. 이미지를 전부 영수증으로 처리하던 문제
+
+처음에는 이미지(`image/*`)와 그 외 파일을 분기해서 이미지는 영수증 OCR로 보냈다. 실제로 써보니 대시보드 캡처, 도면 사진 등 영수증과 무관한 이미지를 전부 영수증으로 처리하려고 해서 계속 오류가 났다.
+
+영수증 자동 인식 기능 자체를 제거하고, 이미지도 다른 파일과 동일하게 파일 저장소로 처리하도록 변경했다.
+
+```python
+# 변경 전: 이미지/비이미지 분기
+image_files = [f for f in files if f.get("mimetype", "").startswith("image/")]
+other_files = [f for f in files if not ...]
+for f in image_files:
+    await agent_service.handle_receipt_image(...)  # 제거
+
+# 변경 후: 모든 파일을 file_service로 통일
+async with AsyncSessionLocal() as db:
+    if len(files) == 1:
+        result = await file_service.handle_slack_file(...)
+    else:
+        result = await file_service.handle_slack_files(...)
+```
+
+---
+
+### 2. 카테고리 추출 — 문장 전체가 카테고리로 저장되는 버그
+
+"KB 태양광 업무로 저장해줘"를 보냈더니 카테고리가 `KB 태양광 업무`가 아니라 `KB 태양광 업무로 저장해줘` 전체로 저장됐다.
+
+원인: `_extract_category`에서 짧은 텍스트 분기가 먼저 실행됐는데, 15자 이하면 무조건 카테고리로 판단하는 로직이었다. "KB 태양광 업무로 저장해줘"가 딱 15자라 통과해버렸다.
+
+수정: **문장 패턴 매칭을 먼저 실행**하고, 그다음 짧은 단어 분기를 시도하도록 순서를 바꿨다.
+
+```python
+_CATEGORY_SENTENCE_PATTERN = re.compile(
+    r'([가-힣A-Za-z0-9 _\-]{1,20})(?:으로|로)\s*(?:저장|분류|파일|묶어)'
+)
+
+def _extract_category(text: str) -> str | None:
+    text = text.strip()
+    if not text:
+        return None
+
+    # 문장 패턴 우선: "X로 저장/분류" → X를 카테고리로
+    m = _CATEGORY_SENTENCE_PATTERN.search(text)
+    if m:
+        cat = m.group(1).strip()
+        if cat:
+            return cat
+
+    # 짧고 단순한 단어 직접 입력 (예: "업무", "개인")
+    if len(text) <= 15:
+        words = set(re.findall(r'[가-힣]+', text))
+        if not (words & _IGNORE_WORDS) and _CATEGORY_PATTERN.match(text):
+            return text
+
+    return None
+```
+
+| 입력 | 수정 전 | 수정 후 |
+|---|---|---|
+| `"KB 태양광 업무로 저장해줘"` | KB 태양광 업무로 저장해줘 | KB 태양광 업무 ✅ |
+| `"업무로 저장해줘"` | 업무로 저장해줘 | 업무 ✅ |
+| `"업무"` | 업무 | 업무 ✅ |
+
+---
+
+### 3. ChromaDB 중복 항목 누적
+
+파일 삭제 후 목록에 같은 파일이 여러 번 나왔다. 삭제 후보 목록에 동일 파일이 3개씩 나오기도 했다.
+
+원인: `_index_file`이 ChromaDB에 문서를 추가할 때 기존 항목을 지우지 않고 `insert`를 호출해서, 같은 `chroma_id`로 중복 추가될 수 있었다.
+
+수정: `_index_file`에서도 먼저 삭제 후 추가하도록 변경했다. (`_reindex_file`과 동일한 방식)
+
+```python
+def _index_file(user_id, chroma_id, filename, mimetype, dt, category):
+    try:
+        col = _client().get_or_create_collection(...)
+        try:
+            col.delete(ids=[chroma_id])  # 기존 항목 먼저 제거
+        except Exception:
+            pass
+        _indexes.pop(user_id, None)
+        doc = Document(text=_make_embed_text(...), id_=chroma_id, ...)
+        _get_index(user_id).insert(doc)
+    except Exception as e:
+        logger.warning("[file] chroma index failed: %s", e)
+```
+
+추가로 삭제 후보 목록을 표시하기 전에 `original_name` 기준으로 중복을 제거하는 로직도 넣었다.
+
+---
+
+### 4. 파일 삭제 — 정확한 파일명 요구가 너무 엄격
+
+"★2026년 신재생에너지(태양광) 발전량 모니터링 접속방법(59개소)_2026.02.06.xlsx"처럼 긴 파일명을 그대로 다시 입력하기는 현실적으로 어렵다. 정확히 일치해야만 삭제되다 보니 실용성이 없었다.
+
+`difflib.get_close_matches`로 유사도 0.6 이상이면 매칭되도록 변경했다.
+
+```python
+import difflib
+
+# 정확히 일치하면 우선 사용
+if text in candidate_names:
+    matched_name = text
+else:
+    # 퍼지 매칭
+    close = difflib.get_close_matches(text, candidate_names, n=1, cutoff=0.6)
+    if close:
+        matched_name = close[0]
+```
+
+"태양광 xlsx 삭제" → 긴 파일명과 유사도 계산 → 자동 매칭 후 삭제.
+
+---
+
+### 5. 다중 파일 전송 — zip보다 개별 전송이 낫다
+
+처음에 여러 파일을 검색하면 zip으로 묶어 전송했다. Slack에서 zip을 받으면 압축을 직접 풀어야 해서 불편했다. 파일 하나씩 메시지로 올라오는 게 미리보기도 보이고 다운로드도 편하다.
+
+```python
+# 변경 전
+zip_bytes = create_zip(file_pairs)
+await slack_service.upload_file(channel_id, "결과.zip", zip_bytes)
+
+# 변경 후
+for f in matched:
+    content = read_file_bytes(f.stored_path)
+    await slack_service.upload_file(channel_id, f.original_name, content)
+```
 
 ---
 
