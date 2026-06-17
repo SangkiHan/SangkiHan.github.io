@@ -102,20 +102,8 @@ services:
       --partitions 5
       --replication-factor 1"
 
-  mongodb:
-    image: mongo:7.0
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin1234
-    volumes:
-      - mongodb_data:/data/db
-
 volumes:
   kafka_data:
-  mongodb_data:
 ```
 
 ### 리스너 3개를 분리한 이유
