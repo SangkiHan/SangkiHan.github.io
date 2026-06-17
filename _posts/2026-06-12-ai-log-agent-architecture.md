@@ -37,32 +37,31 @@ Webhook 수신 (FastAPI)
 ## 시스템 구성도
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   서버 (Spring Boot 등)               │
-│   에러 발생 → Webhook POST /api/v1/webhook/error      │
-└─────────────────────┬───────────────────────────────┘
-                      │
-┌─────────────────────▼───────────────────────────────┐
-│              FastAPI Backend (Python)                 │
-│                                                       │
-│  ┌─────────────┐   ┌──────────────┐  ┌────────────┐ │
-│  │ Error Memory│   │ 로컬 레포지토리│  │ ReAct Agent│ │
-│  │ ChromaDB    │   │ grep_files   │  │ LangGraph  │ │
-│  │ (memory_*)  │   │ read_file    │  │ + Ollama   │ │
-│  └─────────────┘   └──────────────┘  └────────────┘ │
-│         │                │                  │         │
-│         └────────────────┴──────────────────┘         │
-│                          │                            │
-│               ┌──────────┴──────────┐                 │
-│               │  LLM Judge (Gemini) │                 │
-│               │  파일 수정 (Gemini)  │                 │
-│               └──────────┬──────────┘                 │
-└──────────────────────────┼────────────────────────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          ▼                ▼                ▼
-      Slack 알림      MySQL DB        GitHub PR
-    (Judge 점수 포함)  (기록 저장)    (Before/After 포함)
+┌──────────────────────────────────────────────────────┐
+│                  서버 (Spring Boot 등)                 │
+│   에러 발생 → Webhook POST /api/v1/webhook/error       │
+└──────────────────────┬───────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────────────────────┐
+│  노트북                                                                   │
+│                                                                           │
+│  ┌──────────────────────────────────────┐   ┌─────────────────────────┐ │
+│  │      FastAPI Backend (Python)        │   │       Mac Mini          │ │
+│  │                                      │   │                         │ │
+│  │  ┌─────────────┐  ┌───────────────┐  │   │  ┌───────────────────┐  │ │
+│  │  │ Error Memory│  │ 로컬 레포지토리│  │──►│  │  Ollama           │  │ │
+│  │  │ ChromaDB    │  │ grep_files    │  │   │  │  gemma4:12b       │  │ │
+│  │  │ (memory_*)  │  │ read_file     │  │◄──│  │  (LLM 추론)       │  │ │
+│  │  └─────────────┘  └───────────────┘  │   │  └───────────────────┘  │ │
+│  │                                      │   └─────────────────────────┘ │
+│  │  LLM Judge (Gemini) · 파일 수정 (Gemini)                             │
+│  └──────────────────────┬───────────────┘                               │
+└─────────────────────────┼─────────────────────────────────────────────┘
+                          │
+         ┌────────────────┼────────────────┐
+         ▼                ▼                ▼
+     Slack 알림       MySQL DB        GitHub PR
+   (Judge 점수 포함)  (기록 저장)  (Before/After 포함)
 ```
 
 ---
@@ -177,18 +176,18 @@ Slack 메시지 수신
 
 ## 기술 스택
 
-| 영역 | 기술 |
-|---|---|
-| 백엔드 | FastAPI, Python 3.11 |
-| LLM (분석) | Ollama — gemma4:12b |
-| LLM (Judge / 파일 수정) | Google Gemini API (gemini-3.1-flash-lite) |
-| 에이전트 | LangGraph (ReAct) |
-| 파일 탐색 | 로컬 파일시스템 직접 접근 (grep_files, read_file, list_directory) |
-| Error Memory | ChromaDB (벡터 DB) |
-| DB | MySQL (aiomysql + SQLAlchemy) |
-| 배포 | Docker, Jenkins CI/CD |
-| 알림 | Slack Webhook + Interactive Actions |
-| 코드 관리 | GitHub API (자동 PR 생성) |
+| 영역 | 기술 | 실행 환경 |
+|---|---|---|
+| 백엔드 | FastAPI, Python 3.11 | 노트북 |
+| LLM (분석) | Ollama — gemma4:12b | Mac Mini |
+| LLM (Judge / 파일 수정) | Google Gemini API (gemini-3.1-flash-lite) | 노트북 (API 호출) |
+| 에이전트 | LangGraph (ReAct) | 노트북 |
+| 파일 탐색 | 로컬 파일시스템 직접 접근 (grep_files, read_file, list_directory) | 노트북 |
+| Error Memory | ChromaDB (벡터 DB) | 노트북 |
+| DB | MySQL (aiomysql + SQLAlchemy) | 노트북 |
+| 배포 | Docker, Jenkins CI/CD | 노트북 |
+| 알림 | Slack Webhook + Interactive Actions | 노트북 |
+| 코드 관리 | GitHub API (자동 PR 생성) | 노트북 |
 
 ---
 
