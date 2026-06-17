@@ -43,7 +43,7 @@ Webhook 수신 (FastAPI)
 └──────────────────────┬───────────────────────────────┘
                        │
 ┌──────────────────────▼──────────────────────────────────────────────────┐
-│  노트북                                                                   │
+│  서버                                                                   │
 │                                                                           │
 │  ┌──────────────────────────────────────┐   ┌─────────────────────────┐ │
 │  │      FastAPI Backend (Python)        │   │       Mac Mini          │ │
@@ -178,16 +178,16 @@ Slack 메시지 수신
 
 | 영역 | 기술 | 실행 환경 |
 |---|---|---|
-| 백엔드 | FastAPI, Python 3.11 | 노트북 |
+| 백엔드 | FastAPI, Python 3.11 | 서버 |
 | LLM (분석) | Ollama — gemma4:12b | Mac Mini |
-| LLM (Judge / 파일 수정) | Google Gemini API (gemini-3.1-flash-lite) | 노트북 (API 호출) |
-| 에이전트 | LangGraph (ReAct) | 노트북 |
-| 파일 탐색 | 로컬 파일시스템 직접 접근 (grep_files, read_file, list_directory) | 노트북 |
-| Error Memory | ChromaDB (벡터 DB) | 노트북 |
-| DB | MySQL (aiomysql + SQLAlchemy) | 노트북 |
-| 배포 | Docker, Jenkins CI/CD | 노트북 |
-| 알림 | Slack Webhook + Interactive Actions | 노트북 |
-| 코드 관리 | GitHub API (자동 PR 생성) | 노트북 |
+| LLM (Judge / 파일 수정) | Google Gemini API (gemini-3.1-flash-lite) | 서버 (API 호출) |
+| 에이전트 | LangGraph (ReAct) | 서버 |
+| 파일 탐색 | 로컬 파일시스템 직접 접근 (grep_files, read_file, list_directory) | 서버 |
+| Error Memory | ChromaDB (벡터 DB) | 서버 |
+| DB | MySQL (aiomysql + SQLAlchemy) | 서버 |
+| 배포 | Docker, Jenkins CI/CD | 서버 |
+| 알림 | Slack Webhook + Interactive Actions | 서버 |
+| 코드 관리 | GitHub API (자동 PR 생성) | 서버 |
 
 ---
 
