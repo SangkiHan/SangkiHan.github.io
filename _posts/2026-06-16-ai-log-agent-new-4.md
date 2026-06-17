@@ -57,7 +57,7 @@ if not rag_service.is_indexed(server.id, commit):
 
 ```
 # 스택 트레이스 예시
-at com.puppynoteserver.global.TestErrorController.triggerNpe(TestErrorController.java:21)
+at com.sems.global.TestErrorController.triggerNpe(TestErrorController.java:21)
 ```
 
 이미 파일명이 나와있는데 벡터 검색으로 "비슷한 파일"을 찾을 필요가 없었다.

@@ -6,7 +6,7 @@ categories: [Project, AI]
 tags: [FastAPI, Python, Spring Boot, Webhook, BackgroundTasks]
 ---
 
-에이전트의 뼈대가 되는 FastAPI 서버를 어떻게 설계했는지, 그리고 puppynote-server(Spring Boot)에서 어떻게 에러를 보내는지 정리한다.
+에이전트의 뼈대가 되는 FastAPI 서버를 어떻게 설계했는지, 그리고 SEMS(Spring Boot)에서 어떻게 에러를 보내는지 정리한다.
 
 ## 왜 FastAPI인가
 
@@ -23,18 +23,18 @@ FastAPI를 고른 이유는 **async 지원**이다. LLM 분석, 임베딩, GitHu
 
 ---
 
-## puppynote-server: ControllerAdvice 추가
+## SEMS: ControllerAdvice 추가
 
 Spring Boot에서 발생하는 모든 예외를 한 곳에서 잡아 FastAPI로 전송한다. 기존 `@ControllerAdvice`에 웹훅 전송 로직을 추가했다.
 
 ```java
-// GlobalExceptionHandler.java (puppynote-server)
+// GlobalExceptionHandler.java (SEMS)
 @ExceptionHandler(Exception.class)
 public ResponseEntity<ErrorResponse> handleException(
         Exception ex, HttpServletRequest request) {
 
     ErrorPayload payload = ErrorPayload.builder()
-            .serverName("puppynote-server")
+            .serverName("SEMS")
             .serverIp(getLocalIp())
             .errorType(ex.getClass().getSimpleName())
             .message(ex.getMessage())
@@ -87,7 +87,7 @@ async def receive_error(
     return {"status": "received"}
 ```
 
-수신 즉시 200을 반환하고 분석 파이프라인은 `BackgroundTasks`로 넘긴다. 클라이언트(puppynote-server)가 응답을 기다리지 않아도 된다.
+수신 즉시 200을 반환하고 분석 파이프라인은 `BackgroundTasks`로 넘긴다. 클라이언트(SEMS)가 응답을 기다리지 않아도 된다.
 
 ---
 
@@ -237,7 +237,7 @@ Slack은 3초 내에 200 응답이 없으면 타임아웃으로 처리한다. Gi
 ```
 [Before — 에러 발생 시]
 
-puppynote-server                  개발자
+SEMS                  개발자
      │  예외 발생                    │
      │  ControllerAdvice 처리        │
      │──────────────────────────────▶│  Slack 단순 알림
@@ -246,7 +246,7 @@ puppynote-server                  개발자
 
 [After — 에이전트 도입 후]
 
-puppynote-server    FastAPI(노트북)     Ollama(M4)     GitHub     Slack
+SEMS    FastAPI(노트북)     Ollama(M4)     GitHub     Slack
      │ 예외 발생        │                   │              │          │
      │──POST /error──▶ │                   │              │          │
      │◀── 200 ──────── │                   │              │          │

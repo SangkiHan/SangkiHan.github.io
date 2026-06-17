@@ -101,7 +101,7 @@ _TEST_CASES = [
         name="NullPointerException in TestErrorController",
         stack_trace=(
             "java.lang.NullPointerException: Cannot invoke \"String.toUpperCase()\" because \"value\" is null\n"
-            "\tat com.puppynoteserver.global.TestErrorController.triggerNpe(TestErrorController.java:21)"
+            "\tat com.sems.global.TestErrorController.triggerNpe(TestErrorController.java:21)"
         ),
         expected_files=["src/main/java/com/puppynoteserver/global/TestErrorController.java"],
     ),
@@ -109,7 +109,7 @@ _TEST_CASES = [
         name="NoSuchElementException in UserServiceImpl",
         stack_trace=(
             "java.util.NoSuchElementException: User not found\n"
-            "\tat com.puppynoteserver.user.users.service.impl.UserServiceImpl.findById(UserServiceImpl.java:34)"
+            "\tat com.sems.user.users.service.impl.UserServiceImpl.findById(UserServiceImpl.java:34)"
         ),
         expected_files=["src/main/java/com/puppynoteserver/user/users/service/impl/UserServiceImpl.java"],
     ),
@@ -117,7 +117,7 @@ _TEST_CASES = [
         name="DataIntegrityViolationException in CommunityPostWriteService",
         stack_trace=(
             "org.springframework.dao.DataIntegrityViolationException: could not execute statement\n"
-            "\tat com.puppynoteserver.community.post.service.impl.CommunityPostWriteServiceImpl.create(CommunityPostWriteServiceImpl.java:52)"
+            "\tat com.sems.community.post.service.impl.CommunityPostWriteServiceImpl.create(CommunityPostWriteServiceImpl.java:52)"
         ),
         expected_files=["src/main/java/com/puppynoteserver/community/post/service/impl/CommunityPostWriteServiceImpl.java"],
     ),
@@ -149,7 +149,7 @@ _TEST_CASES = [
 
 **케이스 1, 3**: 1위로 정확히 찾았다. BM25가 클래스명을 키워드로 직접 매칭한 덕분이다.
 
-**케이스 2**: 정답 파일이 5위에 있다. 스택 트레이스에 `UserServiceImpl`이 명시되어 있는데도 `UserReadService`가 1위로 올라왔다. 이는 puppynote-server의 구조상 실제 `findById` 로직이 `UserReadService` 계열에 분산되어 있어서 벡터 유사도가 더 높게 측정되기 때문이다. `UserServiceImpl`이 5위 안에는 들어오므로 Hit Rate@5는 100%가 된다.
+**케이스 2**: 정답 파일이 5위에 있다. 스택 트레이스에 `UserServiceImpl`이 명시되어 있는데도 `UserReadService`가 1위로 올라왔다. 이는 SEMS의 구조상 실제 `findById` 로직이 `UserReadService` 계열에 분산되어 있어서 벡터 유사도가 더 높게 측정되기 때문이다. `UserServiceImpl`이 5위 안에는 들어오므로 Hit Rate@5는 100%가 된다.
 
 ---
 

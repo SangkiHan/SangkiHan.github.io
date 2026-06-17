@@ -10,7 +10,7 @@ tags: [RAG, ChromaDB, Embedding, Python, LLM]
 
 ## 왜 RAG를 도입했나
 
-puppynote-server는 수백 개의 Java 파일로 구성되어 있다. 이걸 전부 LLM 프롬프트에 넣으면:
+SEMS는 수백 개의 Java 파일로 구성되어 있다. 이걸 전부 LLM 프롬프트에 넣으면:
 
 1. **토큰 한계** — gemma4:12b는 컨텍스트 윈도우가 제한적이다. 소스 전체를 넣을 수 없다.
 2. **속도 저하** — 토큰이 많을수록 처리 시간이 길어진다.
@@ -232,7 +232,7 @@ LLM 프롬프트
 
 [After — RAG 도입]
 
-puppynote-server     FastAPI(노트북)       ChromaDB     Ollama(M4)
+SEMS     FastAPI(노트북)       ChromaDB     Ollama(M4)
      │ 에러 발생         │                    │             │
      │──POST /error──▶  │                    │             │
      │                  │──git clone          │             │
