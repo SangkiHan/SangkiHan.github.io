@@ -274,6 +274,34 @@ def _make_embed_text(filename, mimetype, dt, category):
 
 ---
 
+### 10. 한국어 처리 개선 — kiwipiepy 형태소 분석기 도입
+
+→ **[개인 비서 한국어 처리 개선 — kiwipiepy 형태소 분석기 도입](/posts/personal-assistant-kiwipiepy)**
+
+정규식으로 처리하던 한국어 파싱 로직 4곳을 kiwipiepy 형태소 분석 기반으로 교체한 기록이다.
+
+주요 포인트:
+- 카테고리 추출: "코오롱 업무**에** 저장해줘" → 조사 변형에 관계없이 명사구 "코오롱 업무" 추출
+- BM25 토크나이저: 수동 2-gram 분해 → 형태소 단위 명사·동사 추출로 검색 품질 향상
+- 정크 메모리 감지: "없습니다" 패턴만 → "없-" 어간 분석으로 "없어요", "없는데요" 등 활용형 포함
+- 긍정/부정 판별: 정확한 키워드 일치 → 어간 매칭으로 "좋아요", "아니에요" 등 활용형 처리
+- `app/core/kiwi.py` 싱글톤으로 세 서비스가 Kiwi 인스턴스 공유 — 모델 로드 1회
+
+```python
+# app/core/kiwi.py — 공유 싱글톤
+from kiwipiepy import Kiwi
+
+_instance: Kiwi | None = None
+
+def get() -> Kiwi:
+    global _instance
+    if _instance is None:
+        _instance = Kiwi()
+    return _instance
+```
+
+---
+
 ## 기술 스택
 
 | 영역 | 기술 |
@@ -288,6 +316,7 @@ def _make_embed_text(filename, mimetype, dt, category):
 | 스케줄러 | APScheduler |
 | 외부 연동 | Google Calendar API, Google Sheets API |
 | 파일 저장 | 로컬 디스크 + ChromaDB (메타데이터 임베딩) |
+| 한국어 처리 | kiwipiepy (형태소 분석) |
 | 알림 | Slack SDK + Block Kit |
 
 ---
