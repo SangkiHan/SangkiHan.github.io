@@ -155,9 +155,8 @@ LLM을 Ollama에서 Gemini로 바꾼 이유와 폴백 전략을 다룬다.
 
 주요 포인트:
 - Ollama `gemma4:12b` 응답: 20~30초 / Gemini: 2~3초 — 개인 비서에서 30초는 너무 느림
-- `gemini-2.5-flash-lite`는 무료 20회/일, `gemini-2.0-flash`는 1,500회/일 — 최신 모델이 항상 관대하지 않음
+- `gemini-3.1-flash-lite`는 1,500회/일 — 최신 모델이 항상 관대하지 않음
 - Gemini로 바꾼 뒤 도구 호출 누락 → 시스템 프롬프트를 표 형식으로 강화, "도구 없이 텍스트만 답변하지 마세요" 추가
-- `think=False`: Ollama 일부 모델의 내부 추론 출력 제거
 
 ```python
 def _is_quota_error(e: Exception) -> bool:
