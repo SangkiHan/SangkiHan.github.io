@@ -61,22 +61,6 @@ timeout은 Gemini 120초, Ollama 300초로 다르게 설정했다. Gemini는 빠
 
 ---
 
-## 모델 선택 실수
-
-처음에 `gemini-2.5-flash-lite`를 썼다. 이름에 "lite"가 붙어서 경량 모델일 거라 생각했는데, 실제로는 무료 티어 일 요청 한도가 20회다.
-
-반면 `gemini-2.0-flash`는 1,500회/일이다.
-
-| 모델 | 무료 티어 일 요청 한도 |
-|---|---|
-| gemini-2.5-flash-lite | 20회/일 |
-| gemini-2.0-flash | 1,500회/일 |
-| gemini-1.5-flash | 1,500회/일 |
-
-최신 모델이라고 무조건 더 관대한 게 아니다. 신규 모델은 오히려 무료 티어가 제한적인 경우가 있다. 개인 프로젝트에서 무료로 쓰려면 모델별 할당량을 먼저 확인해야 한다.
-
----
-
 ## Gemini 도구 호출 문제
 
 LLM을 바꾸면서 새로운 문제가 생겼다. Ollama에서 Gemini로 바꿨더니 에이전트가 도구를 거의 호출하지 않았다.
@@ -128,7 +112,7 @@ ChatOllama(model=settings.ollama_model, base_url=settings.ollama_host, think=Fal
 
 ## 두 LLM의 동작 차이 요약
 
-| 항목 | Gemini 2.0 Flash | Ollama gemma4:12b |
+| 항목 | gemini-3.1-flash-lite | Ollama gemma4:12b |
 |---|---|---|
 | 응답 속도 | 2~3초 | 20~30초 |
 | 일 요청 한도 | 1,500회 | 무제한 (로컬) |
