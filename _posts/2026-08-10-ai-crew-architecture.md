@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ai-crew 아키텍처 — Docker와 호스트 러너를 나눈 이유, 티켓 하나의 여정"
+title: "ai-crew 아키텍처 — Docker와 호스트 러너를 나눈 이유"
 date: 2026-08-10 10:00:00 +0900
 categories: [AI, ai-crew 구축]
 tags: [ai-crew, Architecture, Fastify, WebSocket, Docker, Prisma, MCP]

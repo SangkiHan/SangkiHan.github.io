@@ -77,5 +77,4 @@ flowchart LR
 
 1. **[개념·동기]** — 현재 포스트
 2. **[아키텍처 딥다이브](/posts/ai-crew-architecture)** — 모노레포 구조, Docker+호스트 하이브리드 배포, 티켓 상태머신, WebSocket 이벤트 흐름
-3. **[개발 여정](/posts/ai-crew-dev-journey)** — 스테이지별 MVP 구축부터 윈도우 디버깅, 워크트리 격리를 버린 이유, 실전 버그들까지
-4. **[실사용기](/posts/ai-crew-demo)** — 실제 조직도 UI 화면 캡처로 보는 동작 과정
+3. **[실사용기](/posts/ai-crew-demo)** — 실제 조직도 UI 화면 캡처로 보는 동작 과정
