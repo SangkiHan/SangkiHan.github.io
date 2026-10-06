@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Terraform 코드 구조 설계 — global, envs, modules를 나눈 이유"
-date: 2026-10-06 11:00:00 +0900
+date: 2026-10-05 11:00:00 +0900
 categories: [DevOps, Terraform 구축]
 tags: [Terraform, AWS, IaC, Module, Architecture]
 mermaid: true

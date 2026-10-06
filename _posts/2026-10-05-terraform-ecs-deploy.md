@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "이미지 올리고 서비스 띄우기 — dev 적용과 트러블슈팅"
-date: 2026-10-06 13:00:00 +0900
+date: 2026-10-05 13:00:00 +0900
 categories: [DevOps, Terraform 구축]
 tags: [Terraform, AWS, ECS, Jib, ALB, Troubleshooting]
 mermaid: true

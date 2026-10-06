@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Terraform 실행 준비 — AWS 로그인, state 버킷, global 적용"
-date: 2026-10-06 12:00:00 +0900
+date: 2026-10-05 12:00:00 +0900
 categories: [DevOps, Terraform 구축]
 tags: [Terraform, AWS, S3, Backend, Troubleshooting]
 ---

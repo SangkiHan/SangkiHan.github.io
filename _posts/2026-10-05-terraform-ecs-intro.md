@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Terraform으로 AWS ECS 서비스 배포하기 — 시리즈 소개와 전체 그림"
-date: 2026-10-06 09:00:00 +0900
+date: 2026-10-05 09:00:00 +0900
 categories: [DevOps, Terraform 구축]
 tags: [Terraform, AWS, ECS, Fargate, ALB, IaC]
 mermaid: true
@@ -40,23 +40,23 @@ flowchart LR
     GW --> CH[chatting :8080]
     GW --> SE[session :8081]
     GW --> PU[push :8084]
-    WK[push-worker :8085]
-    subgraph VPC
-      subgraph 퍼블릭 서브넷
-        ALB
-        NAT[NAT Gateway]
-      end
-      subgraph 프라이빗 서브넷
-        GW
-        US
-        CH
-        SE
-        PU
-        WK
-      end
+    ECR[(ECR)] -.->|이미지 pull| PRV
+    PRV -.->|NAT 경유| NAT
+
+    subgraph VPC["VPC"]
+        subgraph PUB["퍼블릭 서브넷"]
+            ALB
+            NAT[NAT Gateway]
+        end
+        subgraph PRV["프라이빗 서브넷"]
+            GW
+            US
+            CH
+            SE
+            PU
+            WK[push-worker :8085]
+        end
     end
-    프라이빗 서브넷 -.->|이미지 pull / 로그| NAT
-    ECR[(ECR)] -.-> 프라이빗 서브넷
 ```
 
 - **외부에 노출되는 건 ALB뿐**이다. 서비스는 전부 프라이빗 서브넷에 있다.

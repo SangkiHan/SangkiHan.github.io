@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "테스트용 MSA 앱 만들기 — 로직 없이 이름만 돌려주는 6개 서비스"
-date: 2026-10-06 10:00:00 +0900
+date: 2026-10-05 10:00:00 +0900
 categories: [DevOps, Terraform 구축]
 tags: [Terraform, Spring Boot, Gradle, SpringCloudGateway, Jib]
 ---
