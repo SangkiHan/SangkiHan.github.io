@@ -135,7 +135,6 @@ jib {
     }
     to.image = "terraform-study/user"
     container {
-        ports = listOf("8082")
         mainClass = "com.genesisnest.user.UserApplication"
         format = com.google.cloud.tools.jib.api.buildplan.ImageFormat.OCI
         jvmFlags = listOf("-XX:MaxRAMPercentage=75.0")
