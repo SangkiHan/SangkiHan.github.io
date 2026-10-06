@@ -6,7 +6,7 @@ categories: [DevOps, Terraform 구축]
 tags: [Terraform, Spring Boot, Gradle, SpringCloudGateway, Jib]
 ---
 
-[지난 포스트](/posts/terraform-ecs-intro)에서 전체 그림을 봤다. 이번엔 Terraform이 올릴 **대상 앱**을 만든다. 목적이 인프라 테스트라서 앱은 최대한 단순하게 만든다.
+[지난 포스트](/posts/terraform-ecs-intro/)에서 전체 그림을 봤다. 이번엔 Terraform이 올릴 **대상 앱**을 만든다. 목적이 인프라 테스트라서 앱은 최대한 단순하게 만든다.
 
 ---
 
@@ -151,4 +151,6 @@ jib {
 
 앱이 준비됐으니 이제 이걸 올릴 인프라를 설계한다. 다음 글에서는 Terraform 코드를 어떻게 나눌지 다룬다.
 
-➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro)
+➡️ 다음 글: [Terraform 코드 구조 설계 — global, envs, modules를 나눈 이유](/posts/terraform-ecs-structure/)
+
+➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro/)

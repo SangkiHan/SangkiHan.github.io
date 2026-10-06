@@ -7,7 +7,7 @@ tags: [Terraform, AWS, ECS, Jib, ALB, Troubleshooting]
 mermaid: true
 ---
 
-[지난 포스트](/posts/terraform-ecs-global-apply)에서 `global`을 적용했다. 이번엔 `envs/dev`를 적용하고 서비스를 실제로 띄운다. 이 단계에서 **`validate`와 `plan`을 통과한 코드가 `apply`에서 깨지는 경험**을 여러 번 했다. 하나씩 정리한다.
+[지난 포스트](/posts/terraform-ecs-global-apply/)에서 `global`을 적용했다. 이번엔 `envs/dev`를 적용하고 서비스를 실제로 띄운다. 이 단계에서 **`validate`와 `plan`을 통과한 코드가 `apply`에서 깨지는 경험**을 여러 번 했다. 하나씩 정리한다.
 
 ---
 
@@ -259,4 +259,4 @@ cd ../../global && terraform destroy
 
 지금은 이미지를 손으로 올리고 있다. 실제 팀에서는 GitHub Actions가 이미지 빌드, ECR push, ECS 배포까지 자동으로 한다. 이미 `github-deploy-role`(OIDC 배포 role)을 Terraform으로 만들어 뒀으니, workflow만 추가하면 연결된다. 그때 `ignore_changes`를 다시 넣을 것이다.
 
-➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro)
+➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro/)

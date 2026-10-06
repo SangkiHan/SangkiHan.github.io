@@ -7,7 +7,7 @@ tags: [Terraform, AWS, IaC, Module, Architecture]
 mermaid: true
 ---
 
-[지난 포스트](/posts/terraform-ecs-app)에서 앱을 만들었다. 이번엔 이걸 올릴 인프라를 **Terraform 코드로 어떻게 나눠 짤지** 정리한다. 코드를 쓰기 전에 구조부터 잡는 게 중요한 이유는, 나중에 바꾸기 가장 어려운 게 디렉터리 경계와 state 경계이기 때문이다.
+[지난 포스트](/posts/terraform-ecs-app/)에서 앱을 만들었다. 이번엔 이걸 올릴 인프라를 **Terraform 코드로 어떻게 나눠 짤지** 정리한다. 코드를 쓰기 전에 구조부터 잡는 게 중요한 이유는, 나중에 바꾸기 가장 어려운 게 디렉터리 경계와 state 경계이기 때문이다.
 
 ---
 
@@ -165,4 +165,6 @@ resource "aws_subnet" "public" {
 
 구조를 잡았으니 이제 실제로 AWS에 적용한다. 다음 글에서는 AWS 로그인, state 버킷, 그리고 `global` 적용까지의 과정과 거기서 만난 에러를 다룬다.
 
-➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro)
+➡️ 다음 글: [Terraform 실행 준비 — AWS 로그인, state 버킷, global 적용](/posts/terraform-ecs-global-apply/)
+
+➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro/)

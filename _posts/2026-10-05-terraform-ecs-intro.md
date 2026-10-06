@@ -68,10 +68,10 @@ flowchart LR
 ## 시리즈 구성
 
 1. **시리즈 소개와 전체 그림** (이 글)
-2. [테스트용 MSA 앱 만들기 — 로직 없이 이름만 돌려주는 6개 서비스](/posts/terraform-ecs-app)
-3. [Terraform 코드 구조 설계 — global, envs, modules를 나눈 이유](/posts/terraform-ecs-structure)
-4. [Terraform 실행 준비 — AWS 로그인, state 버킷, global 적용](/posts/terraform-ecs-global-apply)
-5. [이미지 올리고 서비스 띄우기 — dev 적용과 트러블슈팅](/posts/terraform-ecs-deploy)
+2. [테스트용 MSA 앱 만들기 — 로직 없이 이름만 돌려주는 6개 서비스](/posts/terraform-ecs-app/)
+3. [Terraform 코드 구조 설계 — global, envs, modules를 나눈 이유](/posts/terraform-ecs-structure/)
+4. [Terraform 실행 준비 — AWS 로그인, state 버킷, global 적용](/posts/terraform-ecs-global-apply/)
+5. [이미지 올리고 서비스 띄우기 — dev 적용과 트러블슈팅](/posts/terraform-ecs-deploy/)
 
 각 글은 실제로 겪은 에러와 해결 과정을 그대로 담았다. 성공 경로만 정리한 글은 이미 많으니, 이 시리즈는 **어디서 막히는지**에 무게를 뒀다.
 
@@ -107,4 +107,4 @@ Terraform 코드는 총 약 67개의 AWS 리소스(VPC, 서브넷, NAT, ALB, 보
 > 이 구성은 NAT Gateway와 ALB가 켜져 있는 동안 계속 과금된다. 테스트가 끝나면 반드시 `terraform destroy`로 지운다. 이 부분은 마지막 글에서 다룬다.
 {: .prompt-warning }
 
-다음 글에서는 가장 먼저 테스트용 앱을 만든다.
+➡️ 다음 글: [테스트용 MSA 앱 만들기 — 로직 없이 이름만 돌려주는 6개 서비스](/posts/terraform-ecs-app/)

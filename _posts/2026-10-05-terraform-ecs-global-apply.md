@@ -6,7 +6,7 @@ categories: [DevOps, Terraform 구축]
 tags: [Terraform, AWS, S3, Backend, Troubleshooting]
 ---
 
-[지난 포스트](/posts/terraform-ecs-structure)에서 코드 구조를 잡았다. 이번엔 실제로 AWS에 연결하고 `global` 스택을 적용한다. 코드가 이미 있어도 **실행 환경을 맞추는 단계**에서 의외로 시간이 많이 걸렸다.
+[지난 포스트](/posts/terraform-ecs-structure/)에서 코드 구조를 잡았다. 이번엔 실제로 AWS에 연결하고 `global` 스택을 적용한다. 코드가 이미 있어도 **실행 환경을 맞추는 단계**에서 의외로 시간이 많이 걸렸다.
 
 ---
 
@@ -184,4 +184,6 @@ Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
 
 `global`이 끝났다. 다음 글에서는 `envs/dev`를 적용하고, 컨테이너 이미지를 올려서 실제로 서비스를 띄운다. 그 과정에서 `validate`와 `plan`으로는 안 잡히던 에러를 여러 개 만났다.
 
-➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro)
+➡️ 다음 글: [이미지 올리고 서비스 띄우기 — dev 적용과 트러블슈팅](/posts/terraform-ecs-deploy/)
+
+➡️ 시리즈 인덱스: [Terraform으로 AWS ECS 서비스 배포하기](/posts/terraform-ecs-intro/)
